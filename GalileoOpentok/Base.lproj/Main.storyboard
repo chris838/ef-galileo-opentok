@@ -4,22 +4,68 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Call View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GalileoOpenTok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GOCallViewController" customModule="GalileoOpenTok" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mjq-ZT-RTd">
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="400"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HBz-9v-rme">
+                                <rect key="frame" x="142" y="165" width="216.5" height="71"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am $role" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhK-TT-KEF">
+                                        <rect key="frame" x="53" y="0.0" width="109.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OpenTok is $opentok_status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIS-Wt-ovo">
+                                        <rect key="frame" x="0.0" y="30" width="216.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Galileo is $galileo_status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpN-tF-t62">
+                                        <rect key="frame" x="14.5" y="50.5" width="187" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mjq-ZT-RTd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0kc-9W-aU4"/>
+                            <constraint firstItem="HBz-9v-rme" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ma4-36-4hG"/>
+                            <constraint firstItem="HBz-9v-rme" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OIY-6x-ybl"/>
+                            <constraint firstItem="Mjq-ZT-RTd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="P9e-X2-rQd"/>
+                            <constraint firstAttribute="bottom" secondItem="Mjq-ZT-RTd" secondAttribute="bottom" id="U6a-S4-cCt"/>
+                            <constraint firstAttribute="trailing" secondItem="Mjq-ZT-RTd" secondAttribute="trailing" id="hMt-Md-cXm"/>
+                        </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="500" height="400"/>
+                    <connections>
+                        <outlet property="galileoStatusLabel" destination="fpN-tF-t62" id="n3R-wI-KDv"/>
+                        <outlet property="openTokStatusLabel" destination="iIS-Wt-ovo" id="HOH-87-WhI"/>
+                        <outlet property="roleLabel" destination="dhK-TT-KEF" id="cqH-vf-dHS"/>
+                        <outlet property="videoContainerView" destination="Mjq-ZT-RTd" id="p1h-BQ-OiC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="340" y="147"/>
         </scene>
     </scenes>
 </document>

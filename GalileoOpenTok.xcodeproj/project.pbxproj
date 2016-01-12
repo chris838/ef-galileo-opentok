@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		39B0A1E71C45549D0001E990 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39B0A1E61C45549D0001E990 /* Launch.storyboard */; };
+		39B0A1EC1C455A0C0001E990 /* GOOpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */; };
+		39B0A1EF1C455B540001E990 /* GOCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1EE1C455B540001E990 /* GOCallViewController.swift */; };
+		39B0A1F11C4564AF0001E990 /* GOMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1F01C4564AF0001E990 /* GOMainController.swift */; };
+		39B0A1F31C4567B70001E990 /* GOUIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1F21C4567B70001E990 /* GOUIProtocols.swift */; };
+		39B0A1F51C456B950001E990 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */; };
+		39B0A1F71C456B9A0001E990 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F61C456B9A0001E990 /* Result.framework */; };
+		39B0A1F81C456BD70001E990 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */; };
+		39B0A1F91C456BD70001E990 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		39B0A1FB1C456BD90001E990 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F61C456B9A0001E990 /* Result.framework */; };
+		39B0A1FC1C456BD90001E990 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F61C456B9A0001E990 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		39B0A1FE1C4575470001E990 /* GOMoveRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1FD1C4575470001E990 /* GOMoveRecogniser.swift */; };
 		CD99C5E51B0C3A3F003D4FED /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD99C5E41B0C3A3F003D4FED /* GLKit.framework */; };
 		CD99C5E71B0C3A46003D4FED /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD99C5E61B0C3A46003D4FED /* VideoToolbox.framework */; };
 		CDC39155193E9E790006FFCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC39154193E9E790006FFCB /* libsqlite3.dylib */; };
@@ -44,11 +55,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		39B0A1FA1C456BD80001E990 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				39B0A1F91C456BD70001E990 /* ReactiveCocoa.framework in Embed Frameworks */,
+				39B0A1FC1C456BD90001E990 /* Result.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1B0585F25B616222416DABDC /* Pods_GalileoOpenTok.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GalileoOpenTok.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C79593A8377560D907374C8 /* Pods-GalileoOpenTok.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalileoOpenTok.release.xcconfig"; path = "Pods/Target Support Files/Pods-GalileoOpenTok/Pods-GalileoOpenTok.release.xcconfig"; sourceTree = "<group>"; };
 		2207FCF67FFBA5751C2CE546 /* Pods-GalileoOpenTok.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalileoOpenTok.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GalileoOpenTok/Pods-GalileoOpenTok.debug.xcconfig"; sourceTree = "<group>"; };
 		39B0A1E61C45549D0001E990 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOOpenTokController.swift; sourceTree = "<group>"; };
+		39B0A1EE1C455B540001E990 /* GOCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOCallViewController.swift; sourceTree = "<group>"; };
+		39B0A1F01C4564AF0001E990 /* GOMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOMainController.swift; sourceTree = "<group>"; };
+		39B0A1F21C4567B70001E990 /* GOUIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOUIProtocols.swift; sourceTree = "<group>"; };
+		39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		39B0A1F61C456B9A0001E990 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		39B0A1FD1C4575470001E990 /* GOMoveRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOMoveRecogniser.swift; sourceTree = "<group>"; };
 		CD99C5E41B0C3A3F003D4FED /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		CD99C5E61B0C3A46003D4FED /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		CDC39154193E9E790006FFCB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -88,6 +121,7 @@
 				CD99C5E71B0C3A46003D4FED /* VideoToolbox.framework in Frameworks */,
 				CD99C5E51B0C3A3F003D4FED /* GLKit.framework in Frameworks */,
 				CDF416561A89A85D002B5CEF /* libc++.dylib in Frameworks */,
+				39B0A1F81C456BD70001E990 /* ReactiveCocoa.framework in Frameworks */,
 				CDC39171193E9F2B0006FFCB /* libxml2.dylib in Frameworks */,
 				CDC3916F193E9F260006FFCB /* libpthread.dylib in Frameworks */,
 				CDC3916B193E9F0B0006FFCB /* Foundation.framework in Frameworks */,
@@ -100,10 +134,13 @@
 				CDC3915D193E9EB00006FFCB /* CoreVideo.framework in Frameworks */,
 				CDC3915B193E9EA90006FFCB /* OpenGLES.framework in Frameworks */,
 				CDC39159193E9EA20006FFCB /* SystemConfiguration.framework in Frameworks */,
+				39B0A1F71C456B9A0001E990 /* Result.framework in Frameworks */,
 				CDC39157193E9E970006FFCB /* CoreTelephony.framework in Frameworks */,
 				CDC39155193E9E790006FFCB /* libsqlite3.dylib in Frameworks */,
 				CDC904ED193E3BD300E878A8 /* OpenTok.framework in Frameworks */,
 				FB8345A49A2BBE549E378746 /* Pods_GalileoOpenTok.framework in Frameworks */,
+				39B0A1FB1C456BD90001E990 /* Result.framework in Frameworks */,
+				39B0A1F51C456B950001E990 /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +174,12 @@
 		39B0A1E81C4555DD0001E990 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				CDC904D1193E3BAF00E878A8 /* ViewController.swift */,
+				39B0A1F21C4567B70001E990 /* GOUIProtocols.swift */,
+				39B0A1EE1C455B540001E990 /* GOCallViewController.swift */,
+				39B0A1FD1C4575470001E990 /* GOMoveRecogniser.swift */,
 				CDC904D3193E3BAF00E878A8 /* Main.storyboard */,
 				39B0A1E61C45549D0001E990 /* Launch.storyboard */,
+				CDC904D1193E3BAF00E878A8 /* ViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -147,6 +187,8 @@
 		39B0A1E91C4555EF0001E990 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				39B0A1F01C4564AF0001E990 /* GOMainController.swift */,
+				39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -159,9 +201,18 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		39B0A1ED1C455A2B0001E990 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		CDC39172193ED8D20006FFCB /* Platform Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39B0A1F61C456B9A0001E990 /* Result.framework */,
+				39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */,
 				CD99C5E61B0C3A46003D4FED /* VideoToolbox.framework */,
 				CD99C5E41B0C3A3F003D4FED /* GLKit.framework */,
 				CDC39170193E9F2B0006FFCB /* libxml2.dylib */,
@@ -209,6 +260,7 @@
 		CDC904CC193E3BAF00E878A8 /* GalileoOpenTok */ = {
 			isa = PBXGroup;
 			children = (
+				39B0A1ED1C455A2B0001E990 /* Model */,
 				39B0A1E91C4555EF0001E990 /* Controllers */,
 				39B0A1E81C4555DD0001E990 /* UI */,
 				39B0A1EA1C4556010001E990 /* Assets */,
@@ -257,6 +309,7 @@
 				CDC904C8193E3BAF00E878A8 /* Resources */,
 				704E2CAB3E8C96124E4898E7 /* Copy Pods Resources */,
 				6A43121D8DF7F4123AE1D3C3 /* Embed Pods Frameworks */,
+				39B0A1FA1C456BD80001E990 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -397,7 +450,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDC904D2193E3BAF00E878A8 /* ViewController.swift in Sources */,
+				39B0A1EC1C455A0C0001E990 /* GOOpenTokController.swift in Sources */,
+				39B0A1EF1C455B540001E990 /* GOCallViewController.swift in Sources */,
+				39B0A1F31C4567B70001E990 /* GOUIProtocols.swift in Sources */,
 				CDC904D0193E3BAF00E878A8 /* AppDelegate.swift in Sources */,
+				39B0A1F11C4564AF0001E990 /* GOMainController.swift in Sources */,
+				39B0A1FE1C4575470001E990 /* GOMoveRecogniser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +580,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GalileoOpenTok",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = GalileoOpenTok/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -546,6 +605,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GalileoOpenTok",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = GalileoOpenTok/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
