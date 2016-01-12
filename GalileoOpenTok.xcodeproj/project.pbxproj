@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3915909E1C45B7B500CEAFB5 /* GOGalileoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3915909D1C45B7B500CEAFB5 /* GOGalileoController.swift */; };
+		391590A01C45B7E800CEAFB5 /* GalileoControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */; };
+		391590A11C45B7E800CEAFB5 /* GalileoControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39B0A1E71C45549D0001E990 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39B0A1E61C45549D0001E990 /* Launch.storyboard */; };
 		39B0A1EC1C455A0C0001E990 /* GOOpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */; };
 		39B0A1EF1C455B540001E990 /* GOCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1EE1C455B540001E990 /* GOCallViewController.swift */; };
@@ -19,6 +22,9 @@
 		39B0A1FB1C456BD90001E990 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F61C456B9A0001E990 /* Result.framework */; };
 		39B0A1FC1C456BD90001E990 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F61C456B9A0001E990 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39B0A1FE1C4575470001E990 /* GOMoveRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1FD1C4575470001E990 /* GOMoveRecogniser.swift */; };
+		39B0A2001C4582200001E990 /* GOModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1FF1C4582200001E990 /* GOModel.swift */; };
+		39B0A2021C458BED0001E990 /* GOTouchControlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A2011C458BED0001E990 /* GOTouchControlController.swift */; };
+		39B0A2041C458E070001E990 /* GOMessagingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A2031C458E070001E990 /* GOMessagingController.swift */; };
 		CD99C5E51B0C3A3F003D4FED /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD99C5E41B0C3A3F003D4FED /* GLKit.framework */; };
 		CD99C5E71B0C3A46003D4FED /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD99C5E61B0C3A46003D4FED /* VideoToolbox.framework */; };
 		CDC39155193E9E790006FFCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC39154193E9E790006FFCB /* libsqlite3.dylib */; };
@@ -63,6 +69,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				39B0A1F91C456BD70001E990 /* ReactiveCocoa.framework in Embed Frameworks */,
+				391590A11C45B7E800CEAFB5 /* GalileoControl.framework in Embed Frameworks */,
 				39B0A1FC1C456BD90001E990 /* Result.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -74,6 +81,8 @@
 		1B0585F25B616222416DABDC /* Pods_GalileoOpenTok.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GalileoOpenTok.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C79593A8377560D907374C8 /* Pods-GalileoOpenTok.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalileoOpenTok.release.xcconfig"; path = "Pods/Target Support Files/Pods-GalileoOpenTok/Pods-GalileoOpenTok.release.xcconfig"; sourceTree = "<group>"; };
 		2207FCF67FFBA5751C2CE546 /* Pods-GalileoOpenTok.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalileoOpenTok.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GalileoOpenTok/Pods-GalileoOpenTok.debug.xcconfig"; sourceTree = "<group>"; };
+		3915909D1C45B7B500CEAFB5 /* GOGalileoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOGalileoController.swift; sourceTree = "<group>"; };
+		3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GalileoControl.framework; path = Frameworks/GalileoControl.framework; sourceTree = "<group>"; };
 		39B0A1E61C45549D0001E990 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOOpenTokController.swift; sourceTree = "<group>"; };
 		39B0A1EE1C455B540001E990 /* GOCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOCallViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +91,9 @@
 		39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		39B0A1F61C456B9A0001E990 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		39B0A1FD1C4575470001E990 /* GOMoveRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOMoveRecogniser.swift; sourceTree = "<group>"; };
+		39B0A1FF1C4582200001E990 /* GOModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOModel.swift; sourceTree = "<group>"; };
+		39B0A2011C458BED0001E990 /* GOTouchControlController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOTouchControlController.swift; sourceTree = "<group>"; };
+		39B0A2031C458E070001E990 /* GOMessagingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOMessagingController.swift; sourceTree = "<group>"; };
 		CD99C5E41B0C3A3F003D4FED /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		CD99C5E61B0C3A46003D4FED /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		CDC39154193E9E790006FFCB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -128,6 +140,7 @@
 				CDC39169193E9F070006FFCB /* UIKit.framework in Frameworks */,
 				CDC39167193E9F010006FFCB /* QuartzCore.framework in Frameworks */,
 				CDC39165193E9EFB0006FFCB /* AVFoundation.framework in Frameworks */,
+				391590A01C45B7E800CEAFB5 /* GalileoControl.framework in Frameworks */,
 				CDC39163193E9EF70006FFCB /* AudioToolbox.framework in Frameworks */,
 				CDC39161193E9EF20006FFCB /* CoreGraphics.framework in Frameworks */,
 				CDC3915F193E9EEC0006FFCB /* CoreMedia.framework in Frameworks */,
@@ -189,6 +202,9 @@
 			children = (
 				39B0A1F01C4564AF0001E990 /* GOMainController.swift */,
 				39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */,
+				39B0A2031C458E070001E990 /* GOMessagingController.swift */,
+				39B0A2011C458BED0001E990 /* GOTouchControlController.swift */,
+				3915909D1C45B7B500CEAFB5 /* GOGalileoController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -204,6 +220,7 @@
 		39B0A1ED1C455A2B0001E990 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				39B0A1FF1C4582200001E990 /* GOModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -211,6 +228,7 @@
 		CDC39172193ED8D20006FFCB /* Platform Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */,
 				39B0A1F61C456B9A0001E990 /* Result.framework */,
 				39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */,
 				CD99C5E61B0C3A46003D4FED /* VideoToolbox.framework */,
@@ -452,10 +470,14 @@
 				CDC904D2193E3BAF00E878A8 /* ViewController.swift in Sources */,
 				39B0A1EC1C455A0C0001E990 /* GOOpenTokController.swift in Sources */,
 				39B0A1EF1C455B540001E990 /* GOCallViewController.swift in Sources */,
+				39B0A2041C458E070001E990 /* GOMessagingController.swift in Sources */,
+				3915909E1C45B7B500CEAFB5 /* GOGalileoController.swift in Sources */,
 				39B0A1F31C4567B70001E990 /* GOUIProtocols.swift in Sources */,
 				CDC904D0193E3BAF00E878A8 /* AppDelegate.swift in Sources */,
 				39B0A1F11C4564AF0001E990 /* GOMainController.swift in Sources */,
 				39B0A1FE1C4575470001E990 /* GOMoveRecogniser.swift in Sources */,
+				39B0A2001C4582200001E990 /* GOModel.swift in Sources */,
+				39B0A2021C458BED0001E990 /* GOTouchControlController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +603,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GalileoOpenTok",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = GalileoOpenTok/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -589,7 +612,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GalileoOpenTok-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -606,6 +629,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GalileoOpenTok",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = GalileoOpenTok/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -613,7 +637,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.3xl.GalileoOpenTok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GalileoOpenTok-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;

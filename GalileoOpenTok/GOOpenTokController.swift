@@ -7,7 +7,15 @@ enum GOOpenTokCallStatus {
     case VideoInProgress
 }
 
+protocol GOOpenTokControllerMessagingDelegate {
+    
+    func didRecieveMessage(messageType:String, message:String)
+    
+}
+
 class GOOpenTokController : NSObject {
+    
+    var messagingDelegate: GOOpenTokControllerMessagingDelegate?
     
     var errorSignal : Signal<String, NoError>!
     private var errorObserver : Observer<String, NoError>!
@@ -28,6 +36,7 @@ class GOOpenTokController : NSObject {
     var session : OTSession?
     var publisher : OTPublisher?
     var subscriber : OTSubscriber?
+
     
     override init() {
         super.init()
@@ -64,6 +73,8 @@ class GOOpenTokController : NSObject {
      */
     func publish() {
         publisher = OTPublisher(delegate: self)
+        
+        publisher?.publishAudio = false
         
         var maybeError : OTError?
         session?.publish(publisher, error: &maybeError)
@@ -158,6 +169,12 @@ extension GOOpenTokController : OTSessionDelegate {
     func session(session: OTSession, didFailWithError error: OTError) {
         NSLog("session didFailWithError (%@)", error)
         self.statusObserver.sendNext(.Idle)
+    }
+    
+    func session(session: OTSession!, receivedSignalType type: String!, fromConnection connection: OTConnection!, withString string: String!) {
+        if (connection.connectionId != self.session?.connection.connectionId) {
+            messagingDelegate?.didRecieveMessage(type, message: string)
+        }
     }
     
 }

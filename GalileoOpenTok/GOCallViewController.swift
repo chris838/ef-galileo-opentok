@@ -7,6 +7,9 @@ class GOCallViewController: UIViewController {
     var viewDidAppearSignal: Signal<(), NoError>!
     private var viewDidAppearObserver: Observer<(), NoError>!
     
+    var moveRecogniserSignal: Signal<GOMoveRecogniser, NoError>!
+    private var moveRecogniserObserver: Observer<GOMoveRecogniser, NoError>!
+    
     var moveRecognizer: GOMoveRecogniser!
     var statusBarHidden:Bool = false
 
@@ -27,6 +30,12 @@ class GOCallViewController: UIViewController {
             self.viewDidAppearSignal = signal
             self.viewDidAppearObserver = observer
         }
+
+        if moveRecogniserSignal == nil {
+            let (signal2, observer2) = Signal<GOMoveRecogniser, NoError>.pipe()
+            self.moveRecogniserSignal = signal2
+            self.moveRecogniserObserver = observer2
+        }
         
         mainController = GOMainController(callViewController: self)
     }
@@ -36,10 +45,14 @@ class GOCallViewController: UIViewController {
     }
     
     func setupMoveRecogniser() {
-        moveRecognizer = GOMoveRecogniser()
+        moveRecognizer = GOMoveRecogniser(target: self, action: Selector("moveRecogniserHandler:"))
         self.videoContainerView.addGestureRecognizer(moveRecognizer)
     }
     
+    func moveRecogniserHandler(mr:GOMoveRecogniser) {
+        self.moveRecogniserObserver.sendNext(mr)
+    }
+
     override func prefersStatusBarHidden() -> Bool {
         return statusBarHidden
     }

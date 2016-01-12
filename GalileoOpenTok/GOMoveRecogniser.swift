@@ -20,6 +20,8 @@ class GOMoveRecogniser : UIGestureRecognizer {
     
     var timoutTimer: NSTimer?
     
+    
+    
     func translationInView(view: UIView) -> CGPoint {
         if self.isGestureInProgress() {
             let initialPositionInView: CGPoint = self.view!.convertPoint(initialPosition, toView: view)
