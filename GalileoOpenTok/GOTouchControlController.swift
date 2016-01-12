@@ -5,6 +5,7 @@ import ReactiveCocoa
 class GOTouchControlController {
     
     let trackpadSensitivity: CGFloat = 5
+    
     let iPhoneWidthMM: CGFloat = 75.0
     let iPadMiniWidthMM: CGFloat = 160.0
     let iPadWidthMM: CGFloat = 198.0
@@ -29,8 +30,8 @@ class GOTouchControlController {
                 let velocity = next.velocityInView(next.view!)
                 
                 // Scale according to physical screen dimensions
-                var px = velocity.y * (self.iPhoneWidthMM / self.iPadMiniWidthMM);
-                var py = -velocity.x * (self.iPhoneWidthMM / self.iPadMiniWidthMM);
+                var px = velocity.x * (self.iPhoneWidthMM / self.iPadMiniWidthMM);
+                var py = velocity.y * (self.iPhoneWidthMM / self.iPadMiniWidthMM);
                 
                 // Apply sensitivity scaling
                 px = (self.trackpadSensitivity*px) / 35;
@@ -40,7 +41,7 @@ class GOTouchControlController {
                 px = max(min(px, 100), -100)
                 py = max(min(py, 100), -100)
                 
-                self.model.touchGestureVelocity.value = CGPoint(x: py, y: -px)
+                self.model.touchGestureVelocity.value = CGPoint(x: px, y: py)
                 
             default:
                 self.model.touchGestureVelocity.value = CGPoint(x: 0, y: 0)

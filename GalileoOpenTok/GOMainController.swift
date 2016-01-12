@@ -20,13 +20,13 @@ class GOMainController {
         
         UIApplication.sharedApplication().idleTimerDisabled = true
 
-        // Initialise
-        
-        // model
+        // Initilise model
         self.model = GOModel()
-        // ui
+
+        // Initialise UI
         self.callViewController = callViewController
-        // controller
+        
+        // Innitialise controller
         self.openTokController = GOOpenTokController()
         self.messagingController = GOMessagingController(model: model, openTokController: self.openTokController)
         self.touchControlController = GOTouchControlController(model: model)
@@ -56,19 +56,16 @@ class GOMainController {
             self.callViewController.presentViewController(alertController, animated: true) {}
         }
         
-        
         // Forward gesture events to the touch control controller
         self.callViewController.moveRecogniserSignal.observe(self.touchControlController.touchEventObserver)
         
         // Connect remote touch velocity to Galileo control
         self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
-            self.galileoController.updatePanVelocity(Double(next.x))
-            self.galileoController.updateTiltVelocity(Double(next.y))
+            self.galileoController.updatePanVelocity(Double(-next.x))
+            self.galileoController.updateTiltVelocity(Double(-next.y))
         }
 
         
         
     }
-    
-    
 }
