@@ -1,6 +1,7 @@
 
 import Foundation
 import ReactiveCocoa
+import CoreMotion
 
 class GOMainController {
     
@@ -77,11 +78,20 @@ class GOMainController {
         // Forward gesture events to the touch control controller
         self.callViewController.moveRecogniserSignal.observe(self.touchGestureController.touchEventObserver)
         
+        /*
         // Connect remote touch velocity to Galileo control
         self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
             self.model.galileoPanVelocity.value = Double(-next.x)
             self.model.galileoTiltVelocity.value = Double(-next.y)
         }
+        */
+
+        // Connect remote rotation rate to Galileo control
+        self.model.remoteRotationRate.producer.startWithNext { (next:CMRotationRate) in
+            self.model.galileoPanVelocity.value = Double(next.x.radiansToDegrees)
+            self.model.galileoTiltVelocity.value = Double(next.y.radiansToDegrees)
+        }
+
         
     }
 }
