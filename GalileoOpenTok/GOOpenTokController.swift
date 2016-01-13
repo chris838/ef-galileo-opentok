@@ -170,8 +170,8 @@ extension GOOpenTokController : OTSessionDelegate {
         self.model.isOpenTokConnected.value = false
     }
     
-    func session(session: OTSession!, receivedSignalType type: String!, fromConnection connection: OTConnection!, withString string: String!) {
-        if (connection.connectionId != self.session?.connection.connectionId) {
+    func session(session: OTSession!, receivedSignalType type: String!, fromConnection connection: OTConnection?, withString string: String!) {
+        if (connection?.connectionId != self.session?.connection.connectionId) {
             messagingDelegate?.didRecieveMessage(type, message: string)
         }
     }
