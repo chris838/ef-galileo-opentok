@@ -11,6 +11,7 @@
 		391590A01C45B7E800CEAFB5 /* GalileoControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */; };
 		391590A11C45B7E800CEAFB5 /* GalileoControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		391590A71C46582400CEAFB5 /* RACSignal+SignalProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391590A61C46582400CEAFB5 /* RACSignal+SignalProducer.swift */; };
+		391590A91C4659EC00CEAFB5 /* GODeviceMotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391590A81C4659EC00CEAFB5 /* GODeviceMotionController.swift */; };
 		39B0A1E71C45549D0001E990 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39B0A1E61C45549D0001E990 /* Launch.storyboard */; };
 		39B0A1EC1C455A0C0001E990 /* GOOpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */; };
 		39B0A1EF1C455B540001E990 /* GOCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1EE1C455B540001E990 /* GOCallViewController.swift */; };
@@ -85,6 +86,7 @@
 		3915909D1C45B7B500CEAFB5 /* GOGalileoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOGalileoController.swift; sourceTree = "<group>"; };
 		3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GalileoControl.framework; path = Frameworks/GalileoControl.framework; sourceTree = "<group>"; };
 		391590A61C46582400CEAFB5 /* RACSignal+SignalProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RACSignal+SignalProducer.swift"; sourceTree = "<group>"; };
+		391590A81C4659EC00CEAFB5 /* GODeviceMotionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GODeviceMotionController.swift; sourceTree = "<group>"; };
 		39B0A1E61C45549D0001E990 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOOpenTokController.swift; sourceTree = "<group>"; };
 		39B0A1EE1C455B540001E990 /* GOCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOCallViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				39B0A2031C458E070001E990 /* GOMessagingController.swift */,
 				39B0A2011C458BED0001E990 /* GOTouchGestureController.swift */,
 				3915909D1C45B7B500CEAFB5 /* GOGalileoController.swift */,
+				391590A81C4659EC00CEAFB5 /* GODeviceMotionController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				39B0A1F11C4564AF0001E990 /* GOMainController.swift in Sources */,
 				39B0A1FE1C4575470001E990 /* GOMoveRecogniser.swift in Sources */,
 				39B0A2001C4582200001E990 /* GOModel.swift in Sources */,
+				391590A91C4659EC00CEAFB5 /* GODeviceMotionController.swift in Sources */,
 				391590A71C46582400CEAFB5 /* RACSignal+SignalProducer.swift in Sources */,
 				39B0A2021C458BED0001E990 /* GOTouchGestureController.swift in Sources */,
 			);

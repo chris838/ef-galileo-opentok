@@ -15,6 +15,7 @@ class GOMainController {
     var messagingController: GOMessagingController
     var touchGestureController: GOTouchGestureController
     var galileoController: GOGalileoController
+    var deviceMotionController: GODeviceMotionController
     
     init(callViewController:GOCallViewController) {
         
@@ -26,11 +27,12 @@ class GOMainController {
         // Initialise UI
         self.callViewController = callViewController
         
-        // Innitialise controller
+        // Innitialise controllers
         self.openTokController = GOOpenTokController(model: model)
         self.messagingController = GOMessagingController(model: model, openTokController: self.openTokController)
         self.touchGestureController = GOTouchGestureController(model: model)
         self.galileoController = GOGalileoController(model: model)
+        self.deviceMotionController = GODeviceMotionController(model: model)
         
         // Connect OpenTok video to UI
         self.openTokController.videoContainerView = self.callViewController.videoContainerView
