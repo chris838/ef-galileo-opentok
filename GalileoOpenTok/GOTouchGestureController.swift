@@ -2,7 +2,7 @@
 import UIKit
 import ReactiveCocoa
 
-class GOTouchControlController {
+class GOTouchGestureController {
     
     let trackpadSensitivity: CGFloat = 5
     

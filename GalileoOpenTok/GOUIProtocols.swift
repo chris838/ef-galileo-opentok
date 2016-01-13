@@ -16,12 +16,3 @@ These protocols are used throughout the UI layer. They qualify how non-UI contro
     func didStartCall()
     func didStopCall()
 }
-
-
-// Implement these updater protocols when recieving messages FROM the UI layer.
-
-protocol GOExampleUpdater {
-    func updateHandles( handleA:CGPoint, _ handleB:CGPoint )
-    func updateHandleBounds(minX:CGFloat, _ minY:CGFloat, _ maxX:CGFloat, _ maxY:CGFloat )
-}
-

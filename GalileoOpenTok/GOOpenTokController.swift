@@ -2,11 +2,6 @@
 import Foundation
 import ReactiveCocoa
 
-enum GOOpenTokCallStatus {
-    case Idle
-    case VideoInProgress
-}
-
 protocol GOOpenTokControllerMessagingDelegate {
     
     func didRecieveMessage(messageType:String, message:String)
@@ -19,9 +14,6 @@ class GOOpenTokController : NSObject {
     
     var errorSignal : Signal<String, NoError>!
     private var errorObserver : Observer<String, NoError>!
-    
-    var statusSignal : Signal<GOOpenTokCallStatus, NoError>!
-    private var statusObserver : Observer<GOOpenTokCallStatus, NoError>!
     
     let videoWidth : CGFloat = 1024
     let videoHeight : CGFloat = 768
@@ -37,17 +29,24 @@ class GOOpenTokController : NSObject {
     var publisher : OTPublisher?
     var subscriber : OTSubscriber?
 
+    let model: GOModel
     
-    override init() {
+    init(model:GOModel) {
+        
+        self.model = model
+
         super.init()
         
         let (signal, observer) = Signal<String, NoError>.pipe()
         self.errorSignal = signal
         self.errorObserver = observer
         
-        let (signal2, observer2) = Signal<GOOpenTokCallStatus, NoError>.pipe()
-        self.statusSignal = signal2
-        self.statusObserver = observer2
+        // When call is disconnected, video is neccesarily not in progress
+        self.model.isOpenTokConnected.producer.startWithNext { (next:Bool) in
+            if (!next) {
+                self.model.isVideoCallInProgress.value = false
+            }
+        }
         
         session = OTSession(apiKey: ApiKey, sessionId: SessionID, delegate: self)
     }
@@ -128,12 +127,13 @@ extension GOOpenTokController : OTSessionDelegate {
         
         // Step 2: We have successfully connected, now instantiate a publisher and
         // begin pushing A/V streams into OpenTok.
+        self.model.isOpenTokConnected.value = true
         publish()
     }
     
     func sessionDidDisconnect(session : OTSession) {
         NSLog("Session disconnected (\( session.sessionId))")
-        self.statusObserver.sendNext(.Idle)
+        self.model.isOpenTokConnected.value = false
     }
     
     func session(session: OTSession, streamCreated stream: OTStream) {
@@ -148,27 +148,26 @@ extension GOOpenTokController : OTSessionDelegate {
     
     func session(session: OTSession, streamDestroyed stream: OTStream) {
         NSLog("session streamDestroyed (\(stream.streamId))")
+
+        self.model.isVideoCallInProgress.value = false
         
         if subscriber?.stream.streamId == stream.streamId {
             unsubscribe()
         }
-        
-        self.statusObserver.sendNext(.Idle)
     }
     
     func session(session: OTSession, connectionCreated connection : OTConnection) {
         NSLog("session connectionCreated (\(connection.connectionId))")
-        self.statusObserver.sendNext(.Idle)
     }
     
     func session(session: OTSession, connectionDestroyed connection : OTConnection) {
         NSLog("session connectionDestroyed (\(connection.connectionId))")
-        self.statusObserver.sendNext(.Idle)
+        self.model.isVideoCallInProgress.value = false
     }
     
     func session(session: OTSession, didFailWithError error: OTError) {
         NSLog("session didFailWithError (%@)", error)
-        self.statusObserver.sendNext(.Idle)
+        self.model.isOpenTokConnected.value = false
     }
     
     func session(session: OTSession!, receivedSignalType type: String!, fromConnection connection: OTConnection!, withString string: String!) {
@@ -193,26 +192,26 @@ extension GOOpenTokController : OTSubscriberKitDelegate {
                 view.frame =  videoFrame
                 containerView.addSubview(view)
                 
-                self.statusObserver.sendNext(.VideoInProgress)
+               self.model.isVideoCallInProgress.value = true
             }
         }
     }
     
     func subscriber(subscriber: OTSubscriberKit, didFailWithError error : OTError) {
         NSLog("subscriber %@ didFailWithError %@", subscriber.stream.streamId, error)
-        self.statusObserver.sendNext(.Idle)
+        self.model.isVideoCallInProgress.value = false
     }
     
     func subscriberDidDisconnectFromStream(subscriber: OTSubscriberKit!) {
-        self.statusObserver.sendNext(.Idle)
+        self.model.isVideoCallInProgress.value = false
     }
     
     func subscriberVideoDisabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {
-        self.statusObserver.sendNext(.Idle)
+        self.model.isVideoCallInProgress.value = false
     }
     
     func subscriberVideoEnabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {
-        self.statusObserver.sendNext(.VideoInProgress)
+        self.model.isVideoCallInProgress.value = true
     }
 }
 

@@ -14,7 +14,6 @@ class GOCallViewController: UIViewController {
     var statusBarHidden:Bool = false
 
     @IBOutlet weak var videoContainerView: UIView!
-    @IBOutlet weak var roleLabel: UILabel!
     @IBOutlet weak var openTokStatusLabel: UILabel!
     @IBOutlet weak var galileoStatusLabel: UILabel!
     
@@ -77,7 +76,7 @@ extension GOCallViewController : GOCallStatusResponder {
     }
     
     func updateViewsForCall(inProgress:Bool) {
-        for view in [roleLabel, openTokStatusLabel, galileoStatusLabel] {
+        for view in [openTokStatusLabel, galileoStatusLabel] {
             view.hidden = inProgress
         }
     }

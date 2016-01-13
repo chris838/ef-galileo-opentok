@@ -13,7 +13,7 @@ class GOMainController {
     // Controller
     var openTokController: GOOpenTokController
     var messagingController: GOMessagingController
-    var touchControlController: GOTouchControlController
+    var touchGestureController: GOTouchGestureController
     var galileoController: GOGalileoController
     
     init(callViewController:GOCallViewController) {
@@ -27,10 +27,10 @@ class GOMainController {
         self.callViewController = callViewController
         
         // Innitialise controller
-        self.openTokController = GOOpenTokController()
+        self.openTokController = GOOpenTokController(model: model)
         self.messagingController = GOMessagingController(model: model, openTokController: self.openTokController)
-        self.touchControlController = GOTouchControlController(model: model)
-        self.galileoController = GOGalileoController()
+        self.touchGestureController = GOTouchGestureController(model: model)
+        self.galileoController = GOGalileoController(model: model)
         
         // Connect OpenTok video to UI
         self.openTokController.videoContainerView = self.callViewController.videoContainerView
@@ -40,11 +40,27 @@ class GOMainController {
             self.openTokController.connect()
         }
         
-        // Update UI based on call status
-        self.openTokController.statusSignal.observeNext { (next:GOOpenTokCallStatus) in
-            switch next {
-            case .VideoInProgress: self.callViewController.didStartCall()
-            default: self.callViewController.didStopCall()
+        // Update UI based on OpenTok status
+        self.model.isOpenTokConnected.producer.startWithNext { (next:Bool) in
+            if (next) {
+                self.callViewController.openTokStatusLabel.text = "OpenTok is connected"
+            }
+            else {
+                self.callViewController.openTokStatusLabel.text = "OpenTok is disconnected"
+            }
+        }
+        self.model.isVideoCallInProgress.producer.startWithNext { (next:Bool) in
+            if (next) { self.callViewController.didStartCall() }
+            else { self.callViewController.didStopCall() }
+        }
+        
+        // Update UI based on Galileo connection status
+        self.model.isGalileoConnected.producer.startWithNext { (next:Bool) in
+            if (next) {
+                self.callViewController.galileoStatusLabel.text = "Galileo is connected."
+            }
+            else {
+                self.callViewController.galileoStatusLabel.text = "Galileo is disconnected."
             }
         }
         
@@ -57,15 +73,13 @@ class GOMainController {
         }
         
         // Forward gesture events to the touch control controller
-        self.callViewController.moveRecogniserSignal.observe(self.touchControlController.touchEventObserver)
+        self.callViewController.moveRecogniserSignal.observe(self.touchGestureController.touchEventObserver)
         
         // Connect remote touch velocity to Galileo control
         self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
-            self.galileoController.updatePanVelocity(Double(-next.x))
-            self.galileoController.updateTiltVelocity(Double(-next.y))
+            self.model.galileoPanVelocity.value = Double(-next.x)
+            self.model.galileoTiltVelocity.value = Double(-next.y)
         }
-
-        
         
     }
 }
