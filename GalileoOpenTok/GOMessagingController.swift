@@ -19,17 +19,17 @@ class GOMessagingController {
         
         self.model.touchGestureVelocity.producer.startWithNext { (next:CGPoint) in
             let serialisedValue = "\(next.x);\(next.y)"
-            self.openTokController.session?.signalWithType("touchGestureVelocity", string: serialisedValue, connection: nil, retryAfterReconnect: false, error:nil)
+            self.openTokController.session?.signalWithType("touchGestureVelocity", string: serialisedValue, connection: nil,  error:nil)
         }
         
         self.model.gravity.producer.startWithNext { (next:CMAcceleration) in
             let serialisedValue = "\(next.x);\(next.y);\(next.z)"
-            self.openTokController.session?.signalWithType("gravity", string: serialisedValue, connection: nil, retryAfterReconnect: false, error:nil)
+            self.openTokController.session?.signalWithType("gravity", string: serialisedValue, connection: nil, error:nil)
         }
         
         self.model.rotationRate.producer.startWithNext { (next:CMRotationRate) in
             let serialisedValue = "\(next.x);\(next.y);\(next.z)"
-            self.openTokController.session?.signalWithType("rotationRate", string: serialisedValue, connection: nil, retryAfterReconnect: false, error:nil)
+            self.openTokController.session?.signalWithType("rotationRate", string: serialisedValue, connection: nil, error:nil)
         }
     }
     
