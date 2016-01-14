@@ -1,10 +1,13 @@
 PODS:
   - OpenTok (2.6.1)
+  - SwiftyTimer (1.2.0)
 
 DEPENDENCIES:
   - OpenTok (~> 2.6.0)
+  - SwiftyTimer
 
 SPEC CHECKSUMS:
   OpenTok: 6c094ee06dc954a4327c0a736f494f0eaf35c48c
+  SwiftyTimer: 5453593e0aaacfb1611fb6986d257281140913bb
 
 COCOAPODS: 0.39.0

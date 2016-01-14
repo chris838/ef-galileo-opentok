@@ -14,9 +14,10 @@ class GOMainController {
     // Controller
     var openTokController: GOOpenTokController
     var messagingController: GOMessagingController
-    var touchGestureController: GOTouchGestureController
     var galileoController: GOGalileoController
     var deviceMotionController: GODeviceMotionController
+    var touchGestureController: GOTouchGestureController
+    var airGestureController: GOAirGestureController
     
     init(callViewController:GOCallViewController) {
         
@@ -31,9 +32,10 @@ class GOMainController {
         // Innitialise controllers
         self.openTokController = GOOpenTokController(model: model)
         self.messagingController = GOMessagingController(model: model, openTokController: self.openTokController)
-        self.touchGestureController = GOTouchGestureController(model: model)
         self.galileoController = GOGalileoController(model: model)
         self.deviceMotionController = GODeviceMotionController(model: model)
+        self.touchGestureController = GOTouchGestureController(model: model)
+        self.airGestureController = GOAirGestureController(model: model)
         
         // Connect OpenTok video to UI
         self.openTokController.videoContainerView = self.callViewController.videoContainerView
@@ -85,13 +87,6 @@ class GOMainController {
             self.model.galileoTiltVelocity.value = Double(-next.y)
         }
         */
-
-        // Connect remote rotation rate to Galileo control
-        self.model.remoteRotationRate.producer.startWithNext { (next:CMRotationRate) in
-            self.model.galileoPanVelocity.value = Double(next.x.radiansToDegrees)
-            self.model.galileoTiltVelocity.value = Double(next.y.radiansToDegrees)
-        }
-
         
     }
 }

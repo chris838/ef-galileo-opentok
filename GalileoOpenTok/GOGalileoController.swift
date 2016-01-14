@@ -4,6 +4,8 @@ import ReactiveCocoa
 import GalileoControl
 
 class GOGalileoController : NSObject {
+
+    let minVelocityThreshold = 2.0
     
     let model: GOModel
     
@@ -13,18 +15,22 @@ class GOGalileoController : NSObject {
         
         // Observe changes in galileo velocity; forward them to the device
         self.model.galileoPanVelocity.producer.startWithNext { (velocity:Double) in
-            if GCGalileo.sharedGalileo().isConnected() {
-                GCGalileo.sharedGalileo().velocityControlForAxis(.Pan).targetVelocity = velocity
-            }
+            self.setTargetVelocity(velocity, axis: .Pan)
         }
         self.model.galileoTiltVelocity.producer.startWithNext { (velocity:Double) in
-            if GCGalileo.sharedGalileo().isConnected() {
-                GCGalileo.sharedGalileo().velocityControlForAxis(.Tilt).targetVelocity = velocity
-            }
+            self.setTargetVelocity(velocity, axis: .Tilt)
         }
         
         GCGalileo.sharedGalileo().delegate = self
         GCGalileo.sharedGalileo().waitForConnection()
+        // GCGalileo.sharedGalileo().logLevel = .Info
+    }
+    
+    func setTargetVelocity(var velocity:Double, axis:GCControlAxis) {
+        if GCGalileo.sharedGalileo().isConnected() {
+            if abs(velocity) <  minVelocityThreshold { velocity = 0}
+            GCGalileo.sharedGalileo().velocityControlForAxis(axis).targetVelocity = velocity
+        }
     }
 }
 
