@@ -18,6 +18,11 @@ class GOCallViewController: UIViewController {
     @IBOutlet weak var openTokStatusLabel: UILabel!
     @IBOutlet weak var galileoStatusLabel: UILabel!
     
+    @IBOutlet weak var pidGainsLabel: UILabel!
+    @IBOutlet weak var pGainSlider: UISlider!
+    @IBOutlet weak var iGainSlider: UISlider!
+    @IBOutlet weak var dGainSlider: UISlider!
+    
     var mainController: GOMainController!
     
     override func viewDidLoad() {

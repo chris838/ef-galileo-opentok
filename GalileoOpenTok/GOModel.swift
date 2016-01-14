@@ -22,5 +22,13 @@ class GOModel {
     var isVideoCallInProgress = MutableProperty<Bool>(false)
     
     var galileoPanVelocity = MutableProperty<Double>(0)
-    var galileoTiltVelocity = MutableProperty<Double>(0)    
+    var galileoTiltVelocity = MutableProperty<Double>(0)
+    
+    var pGain = MutableProperty<Double>(0)
+    var iGain = MutableProperty<Double>(0)
+    var dGain = MutableProperty<Double>(0)
+    
+    var remotePGain = MutableProperty<Double>(0)
+    var remoteIGain = MutableProperty<Double>(0)
+    var remoteDGain = MutableProperty<Double>(0)
 }

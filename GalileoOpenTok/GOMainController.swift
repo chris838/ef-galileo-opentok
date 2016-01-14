@@ -80,6 +80,37 @@ class GOMainController {
         // Forward gesture events to the touch control controller
         self.callViewController.moveRecogniserSignal.observe(self.touchGestureController.touchEventObserver)
         
+        // Connect gain parameters to UI
+        self.model.pGain.producer.startWithNext { (next:Double) in
+            self.updatePidGainsLabel()
+        }
+        self.model.iGain.producer.startWithNext { (next:Double) in
+            self.updatePidGainsLabel()
+        }
+        self.model.dGain.producer.startWithNext { (next:Double) in
+            self.updatePidGainsLabel()
+        }
+        self.callViewController.pGainSlider
+            .rac_signalForControlEvents(.ValueChanged)
+            .subscribeNext { (next:AnyObject?) in
+                if let slider = next as! UISlider? {
+                    self.model.pGain.value = Double(slider.value)
+                }
+            }
+        self.callViewController.iGainSlider
+            .rac_signalForControlEvents(.ValueChanged)
+            .subscribeNext { (next:AnyObject?) in
+                if let slider = next as! UISlider? {
+                    self.model.iGain.value = Double(slider.value)
+                }
+        }
+        self.callViewController.dGainSlider
+            .rac_signalForControlEvents(.ValueChanged)
+            .subscribeNext { (next:AnyObject?) in
+                if let slider = next as! UISlider? {
+                    self.model.dGain.value = Double(slider.value)
+                }
+        }
         /*
         // Connect remote touch velocity to Galileo control
         self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
@@ -88,5 +119,10 @@ class GOMainController {
         }
         */
         
+    }
+    
+    func updatePidGainsLabel() {
+        let (p, i, d) = (self.model.pGain.value, self.model.iGain.value, self.model.dGain.value)
+        self.callViewController.pidGainsLabel.text = "p: \(p.format(".2")); i: \(i.format(".2")); d: \(d.format(".2"))"
     }
 }

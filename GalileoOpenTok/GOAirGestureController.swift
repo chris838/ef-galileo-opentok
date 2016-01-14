@@ -6,10 +6,6 @@ import SwiftyTimer
 
 class GOAirGestureController {
     
-    let pGain:Double = 0
-    let iGain:Double = 0
-    let dGain:Double = 0
-    
     var proportional: Double = 0
     var integral: Double = 0
     var derivative: Double = 0
@@ -19,10 +15,9 @@ class GOAirGestureController {
     var error: Double = 0
     var error_previous: Double = 0
     
-    let model: GOModel
-    
     var pidTimer : NSTimer!
     
+    let model: GOModel
     
     init(model:GOModel) {
         self.model = model
@@ -59,6 +54,10 @@ class GOAirGestureController {
     
     func determineControlVariablePid(processVariable:Double, setpoint:Double) -> Double {
         
+        let pGain = self.model.remotePGain.value
+        let iGain = self.model.remoteIGain.value
+        let dGain = self.model.remoteDGain.value
+
         error_previous = error
         error = setpoint - processVariable
         
@@ -70,6 +69,28 @@ class GOAirGestureController {
             return pGain * (proportional + dGain*derivative)
         }
         return pGain * (proportional + (1.0/iGain)*integral + dGain*derivative)
+        
+    }
+    
+    func determineControlVariableSimple(processVariable:Double, setpoint:Double) -> Double {
+        
+        error_previous = error
+        error = setpoint - processVariable
+
+        let deadband = 5.0
+        let max_velocity = 180.0
+        
+        let error_sign: Double = (error > 0 ? 1 : -1)
+        
+        var output_velocity = error_sign
+        if abs(error) < deadband {
+            output_velocity *= 0
+        }
+        else {
+            output_velocity *= max_velocity
+        }
+        
+        return output_velocity
         
     }
     

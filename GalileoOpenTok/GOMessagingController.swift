@@ -31,6 +31,21 @@ class GOMessagingController {
             let serialisedValue = "\(next.x);\(next.y);\(next.z)"
             self.openTokController.session?.signalWithType("rotationRate", string: serialisedValue, connection: nil, error:nil)
         }
+        
+        var pSignal : Signal<Double, NoError>!
+        var iSignal : Signal<Double, NoError>!
+        var dSignal : Signal<Double, NoError>!
+        self.model.pGain.producer.startWithSignal { (s, _) in pSignal = s }
+        self.model.iGain.producer.startWithSignal { (s, _) in iSignal = s }
+        self.model.dGain.producer.startWithSignal { (s, _) in dSignal = s }
+        let pidSignal = combineLatest(pSignal, iSignal, dSignal)
+        pidSignal.observeNext {(p, i, d) in
+            let serialisedValue = "\(p);\(i);\(d)"
+            self.openTokController.session?.signalWithType("pidGains", string: serialisedValue, connection: nil, error:nil)
+        }
+        self.model.pGain.value = 0
+        self.model.iGain.value = 0
+        self.model.dGain.value = 0
     }
 }
 
@@ -49,6 +64,8 @@ extension GOMessagingController : GOOpenTokControllerMessagingDelegate {
             parseRemoteGravityUpdate(message)
         case "rotationRate":
             parseRemoteRotationRateUpdate(message)
+        case "pidGains":
+            parseRemotePidGainsUpdate(message)
         default:
             print("Error, recieved unknown message type")
         }
@@ -71,5 +88,11 @@ extension GOMessagingController : GOOpenTokControllerMessagingDelegate {
         let deserialisedValue = CMRotationRate(x: Double(messageArray[0])!, y: Double(messageArray[1])!, z: Double(messageArray[2])!)
         self.model.remoteRotationRate.value = deserialisedValue
     }
-
+    
+    func parseRemotePidGainsUpdate(message:String) {
+        let messageArray = message.componentsSeparatedByString(";")
+        self.model.remotePGain.value = Double(messageArray[0])!
+        self.model.remoteIGain.value = Double(messageArray[1])!
+        self.model.remoteDGain.value = Double(messageArray[2])!
+    }
 }

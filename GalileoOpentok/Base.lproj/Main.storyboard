@@ -44,6 +44,27 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lfv-O5-7uK">
+                                <rect key="frame" x="20" y="314" width="560" height="175.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="p: $p; i: $i; d: $d" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCp-km-rk0">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-8" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="6oR-Sw-iGt">
+                                        <rect key="frame" x="-2" y="45.5" width="564" height="31"/>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-8" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="QG4-Bc-cnd">
+                                        <rect key="frame" x="-2" y="95.5" width="564" height="31"/>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="V0t-8W-2Ox">
+                                        <rect key="frame" x="-2" y="145.5" width="564" height="31"/>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -54,14 +75,21 @@
                             <constraint firstItem="Mjq-ZT-RTd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="P9e-X2-rQd"/>
                             <constraint firstAttribute="bottom" secondItem="Mjq-ZT-RTd" secondAttribute="bottom" id="U6a-S4-cCt"/>
                             <constraint firstAttribute="trailing" secondItem="Mjq-ZT-RTd" secondAttribute="trailing" id="hMt-Md-cXm"/>
+                            <constraint firstItem="Lfv-O5-7uK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kMl-lX-0w6"/>
                             <constraint firstItem="syM-8x-xpM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="owY-4y-Um2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Lfv-O5-7uK" secondAttribute="bottom" constant="10" id="tc9-kG-gyM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lfv-O5-7uK" secondAttribute="trailing" id="vKV-C5-ODO"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="500"/>
                     <connections>
+                        <outlet property="dGainSlider" destination="V0t-8W-2Ox" id="6Sq-p1-KOy"/>
                         <outlet property="galileoStatusLabel" destination="fpN-tF-t62" id="n3R-wI-KDv"/>
+                        <outlet property="iGainSlider" destination="QG4-Bc-cnd" id="Sqd-VE-VLH"/>
                         <outlet property="openTokStatusLabel" destination="iIS-Wt-ovo" id="HOH-87-WhI"/>
+                        <outlet property="pGainSlider" destination="6oR-Sw-iGt" id="Hfv-gd-a0G"/>
+                        <outlet property="pidGainsLabel" destination="VCp-km-rk0" id="Psf-y2-tIM"/>
                         <outlet property="videoContainerView" destination="Mjq-ZT-RTd" id="p1h-BQ-OiC"/>
                     </connections>
                 </viewController>
