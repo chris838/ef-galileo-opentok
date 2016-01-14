@@ -22,6 +22,7 @@ class GOModel {
     
     // MARK: - Air gesture controller config
     
+    let dt: Double = 0.1
     let pGain:Double = 2.3
     let iGain:Double = 0
     let dGain:Double = 0

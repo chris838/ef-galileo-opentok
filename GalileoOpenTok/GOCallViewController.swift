@@ -10,7 +10,11 @@ class GOCallViewController: UIViewController {
     var moveRecogniserSignal: Signal<GOMoveRecogniser, NoError>!
     private var moveRecogniserObserver: Observer<GOMoveRecogniser, NoError>!
     
-    var moveRecognizer: GOMoveRecogniser!
+    var doubleTabSignal: Signal<(), NoError>!
+    private var doubleTabObserver: Observer<(), NoError>!
+    
+    var moveRecogniser: GOMoveRecogniser!
+    var doubleTapRecogniser: UITapGestureRecognizer!
     var statusBarHidden:Bool = false
 
     @IBOutlet weak var videoContainerView: UIView!
@@ -24,19 +28,9 @@ class GOCallViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupMoveRecogniser()
-        
-        if viewDidAppearSignal == nil {
-            let (signal, observer) = Signal<(), NoError>.pipe()
-            self.viewDidAppearSignal = signal
-            self.viewDidAppearObserver = observer
-        }
+        self.setupDoubleTapRecogniser()
+        self.setupViewDidAppearSignal()
 
-        if moveRecogniserSignal == nil {
-            let (signal2, observer2) = Signal<GOMoveRecogniser, NoError>.pipe()
-            self.moveRecogniserSignal = signal2
-            self.moveRecogniserObserver = observer2
-        }
-        
         mainController = GOMainController(callViewController: self)
     }
     
@@ -44,13 +38,10 @@ class GOCallViewController: UIViewController {
         self.viewDidAppearObserver?.sendNext(())
     }
     
-    func setupMoveRecogniser() {
-        moveRecognizer = GOMoveRecogniser(target: self, action: Selector("moveRecogniserHandler:"))
-        self.videoContainerView.addGestureRecognizer(moveRecognizer)
-    }
-    
-    func moveRecogniserHandler(mr:GOMoveRecogniser) {
-        self.moveRecogniserObserver.sendNext(mr)
+    func setupViewDidAppearSignal() {
+        let (signal, observer) = Signal<(), NoError>.pipe()
+        self.viewDidAppearSignal = signal
+        self.viewDidAppearObserver = observer
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -62,7 +53,48 @@ class GOCallViewController: UIViewController {
     }
 }
 
-extension GOCallViewController : GOCallStatusResponder {
+
+// MARK: - Move recogniser
+extension GOCallViewController {
+    
+    func setupMoveRecogniser() {
+        
+        let (signal, observer) = Signal<GOMoveRecogniser, NoError>.pipe()
+        self.moveRecogniserSignal = signal
+        self.moveRecogniserObserver = observer
+        
+        moveRecogniser = GOMoveRecogniser(target: self, action: Selector("moveRecogniserHandler:"))
+        self.videoContainerView.addGestureRecognizer(moveRecogniser)
+    }
+    
+    func moveRecogniserHandler(mr:GOMoveRecogniser) {
+        self.moveRecogniserObserver.sendNext(mr)
+    }
+}
+
+
+// MARK: - Double tap recogniser
+extension GOCallViewController {
+    
+    func setupDoubleTapRecogniser() {
+        
+        let (signal, observer) = Signal<(), NoError>.pipe()
+        self.doubleTabSignal = signal
+        self.doubleTabObserver = observer
+        
+        doubleTapRecogniser = UITapGestureRecognizer(target: self, action: Selector("doubleTapHandler"))
+        doubleTapRecogniser.numberOfTapsRequired = 2
+        self.videoContainerView.addGestureRecognizer(doubleTapRecogniser)
+    }
+    
+    func doubleTapHandler() {
+        self.doubleTabObserver.sendNext()
+    }
+    
+}
+
+// MARK: - Update view for call in progress / not in progress
+extension GOCallViewController {
     
     func didStartCall() {
         updateViewsForCall(true)

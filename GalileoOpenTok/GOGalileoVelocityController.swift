@@ -4,24 +4,25 @@ import ReactiveCocoa
 import CoreMotion
 import SwiftyTimer
 
-class GOAirGestureController {
+class GOGalileoVelocityController {
     
     var proportional: Double = 0
     var integral: Double = 0
     var derivative: Double = 0
-    
-    var dt: Double = 0.1
-    
     var error: Double = 0
     var error_previous: Double = 0
     
     let model: GOModel
-    
     var pidTimer : NSTimer!
-    
     
     init(model:GOModel) {
         self.model = model
+        
+        // Connect remote touch velocity to Galileo control
+        self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
+            self.model.galileoPanVelocity.value = Double(-next.x)
+            self.model.galileoTiltVelocity.value = Double(-next.y)
+        }
         
         // Connect remote rotation rate to Galileo pan control
         self.model.remoteRotationRate.producer.startWithNext { (next:CMRotationRate) in
@@ -29,17 +30,8 @@ class GOAirGestureController {
         }
         
         // For tilt, we use a PID controller to attempt to minimise the remote-local tilt delta.
-        self.pidTimer =  NSTimer.every(dt.seconds) {
-            
-            let processVariable = self.tiltAngleFromGravityDegrees(self.model.gravity.value)
-            let setpoint = self.tiltAngleFromGravityMirroredDegrees(self.model.remoteGravity.value)
-            let e = setpoint - processVariable
-            
-            print("pv:", processVariable)
-            print("sp:", setpoint)
-            print("e:", e)
-            print("cv:", e*self.model.pGain)
-            
+        self.pidTimer =  NSTimer.every(self.model.dt.seconds) {
+
             if self.model.isGalileoConnected.value {
                 self.controlLoopTick()
             }
@@ -66,6 +58,7 @@ class GOAirGestureController {
         let pGain = self.model.pGain
         let iGain = self.model.iGain
         let dGain = self.model.dGain
+        let dt = self.model.dt
         
         error_previous = error
         error = setpoint - processVariable

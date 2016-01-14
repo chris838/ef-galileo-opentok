@@ -12,12 +12,11 @@
 		391590A11C45B7E800CEAFB5 /* GalileoControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		391590A91C4659EC00CEAFB5 /* GODeviceMotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391590A81C4659EC00CEAFB5 /* GODeviceMotionController.swift */; };
 		391590AB1C466C2B00CEAFB5 /* Degrees+Radians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391590AA1C466C2B00CEAFB5 /* Degrees+Radians.swift */; };
-		391590AD1C4688E400CEAFB5 /* GOAirGestureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391590AC1C4688E400CEAFB5 /* GOAirGestureController.swift */; };
+		391590AD1C4688E400CEAFB5 /* GOGalileoVelocityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391590AC1C4688E400CEAFB5 /* GOGalileoVelocityController.swift */; };
 		39B0A1E71C45549D0001E990 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39B0A1E61C45549D0001E990 /* Launch.storyboard */; };
 		39B0A1EC1C455A0C0001E990 /* GOOpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */; };
 		39B0A1EF1C455B540001E990 /* GOCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1EE1C455B540001E990 /* GOCallViewController.swift */; };
 		39B0A1F11C4564AF0001E990 /* GOMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1F01C4564AF0001E990 /* GOMainController.swift */; };
-		39B0A1F31C4567B70001E990 /* GOUIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0A1F21C4567B70001E990 /* GOUIProtocols.swift */; };
 		39B0A1F71C456B9A0001E990 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F61C456B9A0001E990 /* Result.framework */; };
 		39B0A1F81C456BD70001E990 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */; };
 		39B0A1F91C456BD70001E990 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -87,12 +86,11 @@
 		3915909F1C45B7E800CEAFB5 /* GalileoControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GalileoControl.framework; path = Frameworks/GalileoControl.framework; sourceTree = "<group>"; };
 		391590A81C4659EC00CEAFB5 /* GODeviceMotionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GODeviceMotionController.swift; sourceTree = "<group>"; };
 		391590AA1C466C2B00CEAFB5 /* Degrees+Radians.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Degrees+Radians.swift"; sourceTree = "<group>"; };
-		391590AC1C4688E400CEAFB5 /* GOAirGestureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOAirGestureController.swift; sourceTree = "<group>"; };
+		391590AC1C4688E400CEAFB5 /* GOGalileoVelocityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOGalileoVelocityController.swift; sourceTree = "<group>"; };
 		39B0A1E61C45549D0001E990 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOOpenTokController.swift; sourceTree = "<group>"; };
 		39B0A1EE1C455B540001E990 /* GOCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOCallViewController.swift; sourceTree = "<group>"; };
 		39B0A1F01C4564AF0001E990 /* GOMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOMainController.swift; sourceTree = "<group>"; };
-		39B0A1F21C4567B70001E990 /* GOUIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOUIProtocols.swift; sourceTree = "<group>"; };
 		39B0A1F41C456B950001E990 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		39B0A1F61C456B9A0001E990 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		39B0A1FD1C4575470001E990 /* GOMoveRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOMoveRecogniser.swift; sourceTree = "<group>"; };
@@ -197,17 +195,16 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		39B0A1E81C4555DD0001E990 /* Views */ = {
+		39B0A1E81C4555DD0001E990 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				39B0A1F21C4567B70001E990 /* GOUIProtocols.swift */,
 				39B0A1EE1C455B540001E990 /* GOCallViewController.swift */,
 				39B0A1FD1C4575470001E990 /* GOMoveRecogniser.swift */,
 				CDC904D3193E3BAF00E878A8 /* Main.storyboard */,
 				39B0A1E61C45549D0001E990 /* Launch.storyboard */,
 				CDC904D1193E3BAF00E878A8 /* ViewController.swift */,
 			);
-			name = Views;
+			name = UI;
 			sourceTree = "<group>";
 		};
 		39B0A1E91C4555EF0001E990 /* Controllers */ = {
@@ -216,10 +213,10 @@
 				39B0A1F01C4564AF0001E990 /* GOMainController.swift */,
 				39B0A1EB1C455A0C0001E990 /* GOOpenTokController.swift */,
 				39B0A2031C458E070001E990 /* GOMessagingController.swift */,
-				3915909D1C45B7B500CEAFB5 /* GOGalileoController.swift */,
 				391590A81C4659EC00CEAFB5 /* GODeviceMotionController.swift */,
 				39B0A2011C458BED0001E990 /* GOTouchGestureController.swift */,
-				391590AC1C4688E400CEAFB5 /* GOAirGestureController.swift */,
+				3915909D1C45B7B500CEAFB5 /* GOGalileoController.swift */,
+				391590AC1C4688E400CEAFB5 /* GOGalileoVelocityController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -296,7 +293,7 @@
 				391590A51C46580E00CEAFB5 /* Utils */,
 				39B0A1ED1C455A2B0001E990 /* Model */,
 				39B0A1E91C4555EF0001E990 /* Controllers */,
-				39B0A1E81C4555DD0001E990 /* Views */,
+				39B0A1E81C4555DD0001E990 /* UI */,
 				39B0A1EA1C4556010001E990 /* Assets */,
 				CDC904CD193E3BAF00E878A8 /* Supporting Files */,
 			);
@@ -489,10 +486,9 @@
 				39B0A2041C458E070001E990 /* GOMessagingController.swift in Sources */,
 				3915909E1C45B7B500CEAFB5 /* GOGalileoController.swift in Sources */,
 				39E0DBC01C46BCB4008711F1 /* NumberFormatting.swift in Sources */,
-				39B0A1F31C4567B70001E990 /* GOUIProtocols.swift in Sources */,
 				CDC904D0193E3BAF00E878A8 /* AppDelegate.swift in Sources */,
 				39B0A1F11C4564AF0001E990 /* GOMainController.swift in Sources */,
-				391590AD1C4688E400CEAFB5 /* GOAirGestureController.swift in Sources */,
+				391590AD1C4688E400CEAFB5 /* GOGalileoVelocityController.swift in Sources */,
 				39B0A1FE1C4575470001E990 /* GOMoveRecogniser.swift in Sources */,
 				39B0A2001C4582200001E990 /* GOModel.swift in Sources */,
 				391590A91C4659EC00CEAFB5 /* GODeviceMotionController.swift in Sources */,

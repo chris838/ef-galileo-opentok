@@ -15,9 +15,9 @@ class GOMainController {
     var openTokController: GOOpenTokController
     var messagingController: GOMessagingController
     var galileoController: GOGalileoController
+    var galileoVelocityController: GOGalileoVelocityController
     var deviceMotionController: GODeviceMotionController
     var touchGestureController: GOTouchGestureController
-    var airGestureController: GOAirGestureController
     
     init(callViewController:GOCallViewController) {
         
@@ -35,7 +35,7 @@ class GOMainController {
         self.galileoController = GOGalileoController(model: model)
         self.deviceMotionController = GODeviceMotionController(model: model)
         self.touchGestureController = GOTouchGestureController(model: model)
-        self.airGestureController = GOAirGestureController(model: model)
+        self.galileoVelocityController = GOGalileoVelocityController(model: model)
         
         // Connect OpenTok video to UI
         self.openTokController.videoContainerView = self.callViewController.videoContainerView
@@ -79,14 +79,6 @@ class GOMainController {
         
         // Forward gesture events to the touch control controller
         self.callViewController.moveRecogniserSignal.observe(self.touchGestureController.touchEventObserver)
-        
-        /*
-        // Connect remote touch velocity to Galileo control
-        self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
-            self.model.galileoPanVelocity.value = Double(-next.x)
-            self.model.galileoTiltVelocity.value = Double(-next.y)
-        }
-        */
-        
+
     }
 }
