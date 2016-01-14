@@ -14,6 +14,7 @@ class GOCallViewController: UIViewController {
     var statusBarHidden:Bool = false
 
     @IBOutlet weak var videoContainerView: UIView!
+    
     @IBOutlet weak var openTokStatusLabel: UILabel!
     @IBOutlet weak var galileoStatusLabel: UILabel!
     

@@ -32,7 +32,6 @@ class GOMessagingController {
             self.openTokController.session?.signalWithType("rotationRate", string: serialisedValue, connection: nil, error:nil)
         }
     }
-    
 }
 
 extension GOMessagingController : GOOpenTokControllerMessagingDelegate {
@@ -72,6 +71,5 @@ extension GOMessagingController : GOOpenTokControllerMessagingDelegate {
         let deserialisedValue = CMRotationRate(x: Double(messageArray[0])!, y: Double(messageArray[1])!, z: Double(messageArray[2])!)
         self.model.remoteRotationRate.value = deserialisedValue
     }
-    
 
 }

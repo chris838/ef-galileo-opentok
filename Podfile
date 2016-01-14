@@ -4,6 +4,7 @@ use_frameworks!
 
 target 'GalileoOpenTok' do
   pod 'OpenTok', '~> 2.6.0'
+  pod 'SwiftyTimer'
 end
 
 target 'GalileoOpenTokTests' do
