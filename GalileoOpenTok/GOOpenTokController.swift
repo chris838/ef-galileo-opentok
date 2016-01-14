@@ -11,19 +11,10 @@ protocol GOOpenTokControllerMessagingDelegate {
 class GOOpenTokController : NSObject {
     
     var messagingDelegate: GOOpenTokControllerMessagingDelegate?
+    var videoContainerView: UIView?
     
     var errorSignal : Signal<String, NoError>!
     private var errorObserver : Observer<String, NoError>!
-    
-    let videoWidth : CGFloat = 1024
-    let videoHeight : CGFloat = 768
-    
-    var videoContainerView: UIView?
-    
-    // API details available here: https://dashboard.tokbox.com/projects
-    let apiKey = "45464132"
-    let sessionID = "1_MX40NTQ2NDEzMn5-MTQ1MjYwNDQzNTg4OX4wYkdwNm5WQTFDbjBVQ05KUUNBN0kvQUN-UH4"
-    let token = "T1==cGFydG5lcl9pZD00NTQ2NDEzMiZzaWc9MDQ4YmNlNWU1ZDIwOWRjNGNmZTFkMTgyMmQzNzU5ZTU3NmUxY2NkZDpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UUTJOREV6TW41LU1UUTFNall3TkRRek5UZzRPWDR3WWtkd05tNVdRVEZEYmpCVlEwNUtVVU5CTjBrdlFVTi1VSDQmY3JlYXRlX3RpbWU9MTQ1MjYwNDQ0MSZub25jZT0wLjM3NTExODU3MDc3NzA5ODImZXhwaXJlX3RpbWU9MTQ1NTE5NjM3MSZjb25uZWN0aW9uX2RhdGE9"
     
     var session : OTSession?
     var publisher : OTPublisher?
@@ -48,7 +39,7 @@ class GOOpenTokController : NSObject {
             }
         }
         
-        session = OTSession(apiKey: ApiKey, sessionId: SessionID, delegate: self)
+        session = OTSession(apiKey: self.model.apiKey, sessionId: self.model.sessionId, delegate: self)
     }
     
     /**
@@ -58,7 +49,7 @@ class GOOpenTokController : NSObject {
     func connect() {
         if let session = self.session {
             var maybeError : OTError?
-            session.connectWithToken(Token, error: &maybeError)
+            session.connectWithToken(self.model.token, error: &maybeError)
             if let error = maybeError {
                 self.errorObserver.sendNext(error.localizedDescription)
             }

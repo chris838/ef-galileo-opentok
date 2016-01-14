@@ -6,10 +6,6 @@ import SwiftyTimer
 
 class GOAirGestureController {
     
-    let pGain:Double = 0
-    let iGain:Double = 0
-    let dGain:Double = 0
-    
     var proportional: Double = 0
     var integral: Double = 0
     var derivative: Double = 0
@@ -58,6 +54,10 @@ class GOAirGestureController {
     }
     
     func determineControlVariablePid(processVariable:Double, setpoint:Double) -> Double {
+        
+        let pGain = self.model.pGain
+        let iGain = self.model.iGain
+        let dGain = self.model.dGain
         
         error_previous = error
         error = setpoint - processVariable
