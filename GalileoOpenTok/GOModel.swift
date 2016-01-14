@@ -6,6 +6,11 @@ import Foundation
 import CoreMotion
 import ReactiveCocoa
 
+enum GOControlMode {
+    case TouchGestureControl
+    case AirGestureControl
+}
+
 class GOModel {
     
     // MARK: - Kinematic state
@@ -20,19 +25,21 @@ class GOModel {
     var remoteTouchGestureVelocity = MutableProperty<CGPoint>(CGPoint(x: 0, y: 0))
     
     
-    // MARK: - Air gesture controller config
-    
-    let dt: Double = 0.1
-    let pGain:Double = 2.3
-    let iGain:Double = 0
-    let dGain:Double = 0
-    
-    
     // MARK: - Galileo config
     
     var isGalileoConnected = MutableProperty<Bool>(false)
     var galileoPanVelocity = MutableProperty<Double>(0)
     var galileoTiltVelocity = MutableProperty<Double>(0)
+    
+    
+    // MARK: - Galileo velocity control config
+    
+    var controlMode = MutableProperty<GOControlMode>(.TouchGestureControl)
+    
+    let dt: Double = 0.1
+    let pGain:Double = 2.3
+    let iGain:Double = 0
+    let dGain:Double = 0
     
 
     // MARK: - OpenTok/Video config

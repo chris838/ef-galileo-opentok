@@ -90,7 +90,6 @@ extension GOCallViewController {
     func doubleTapHandler() {
         self.doubleTabObserver.sendNext()
     }
-    
 }
 
 // MARK: - Update view for call in progress / not in progress
@@ -112,5 +111,18 @@ extension GOCallViewController {
         for view in [openTokStatusLabel, galileoStatusLabel] {
             view.hidden = inProgress
         }
+    }
+}
+
+
+// MARK: - Update view for control mode
+extension GOCallViewController {
+    
+    func didSwitchToMotionControl() {
+
+    }
+    
+    func didSwitchToTouchControl() {
+
     }
 }

@@ -38,6 +38,10 @@ class GOGalileoVelocityController {
         }
     }
     
+    func enableAirGestureControl() {
+        
+    }
+    
     
     func controlLoopTick() {
         
