@@ -10,7 +10,7 @@ class GOAirGestureController {
     var integral: Double = 0
     var derivative: Double = 0
     
-    var dt: Double = 0.05
+    var dt: Double = 0.1
     
     var error: Double = 0
     var error_previous: Double = 0
@@ -24,14 +24,22 @@ class GOAirGestureController {
         self.model = model
         
         // Connect remote rotation rate to Galileo pan control
-        /*
         self.model.remoteRotationRate.producer.startWithNext { (next:CMRotationRate) in
-            self.model.galileoPanVelocity.value = Double(next.x.radiansToDegrees)
+            self.model.galileoPanVelocity.value = Double(-next.x.radiansToDegrees)
         }
-        */
         
         // For tilt, we use a PID controller to attempt to minimise the remote-local tilt delta.
         self.pidTimer =  NSTimer.every(dt.seconds) {
+            
+            let processVariable = self.tiltAngleFromGravityDegrees(self.model.gravity.value)
+            let setpoint = self.tiltAngleFromGravityMirroredDegrees(self.model.remoteGravity.value)
+            let e = setpoint - processVariable
+            
+            print("pv:", processVariable)
+            print("sp:", setpoint)
+            print("e:", e)
+            print("cv:", e*self.model.pGain)
+            
             if self.model.isGalileoConnected.value {
                 self.controlLoopTick()
             }
@@ -41,9 +49,9 @@ class GOAirGestureController {
     
     func controlLoopTick() {
         
-        // Load variables from model
-        let processVariable = tiltAngleFromGravity(self.model.gravity.value)
-        let setpoint = tiltAngleFromGravity(self.model.remoteGravity.value)
+        // Control variables
+        let processVariable = tiltAngleFromGravityDegrees(self.model.gravity.value)
+        let setpoint = tiltAngleFromGravityMirroredDegrees(self.model.remoteGravity.value)
         
         // Caculate control variable from PID controller
         let controlVariable = determineControlVariablePid(processVariable, setpoint: setpoint)
@@ -62,6 +70,9 @@ class GOAirGestureController {
         error_previous = error
         error = setpoint - processVariable
         
+        if error > 180 { error -= 360 }
+        else if error < -180 {error += 360 }
+        
         proportional = error
         integral = integral + (error * dt)
         derivative = (error - error_previous) / dt
@@ -73,14 +84,23 @@ class GOAirGestureController {
         
     }
     
-    func tiltAngleFromGravity(gravity:CMAcceleration) -> Double {
+    func tiltAngleFromGravityDegrees(gravity:CMAcceleration) -> Double {
         
         // Tilt angle of zero equates to neutral tilt position:
         // - Phone screen is exactly perpendicular to the floor
         // - Phone is in "landscape right" orientation
         // - (i.e. home button appears to the right of the screen)
+        // - Acute POSITIVE angle means pointing UPWARDS from horizontal
+        // - Acute NEGATIVE angle means pointing DOWNWARDS from horizontal
         
         return atan2(gravity.z, -gravity.x).radiansToDegrees
     }
     
+    func tiltAngleFromGravityMirroredDegrees(gravity:CMAcceleration) -> Double {
+        
+        // For the mirror tilt angle, we use the same definition except:
+        // - Acute POSITIVE angle means pointing DOWNWARDS from horizontal
+        // - Acute NEGATIVE angle means pointing UPWARDS from horizontal
+        return atan2(-gravity.z, -gravity.x).radiansToDegrees
+    }
 }
