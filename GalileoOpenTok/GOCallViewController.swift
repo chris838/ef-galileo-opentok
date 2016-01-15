@@ -18,7 +18,7 @@ class GOCallViewController: UIViewController {
     var statusBarHidden:Bool = false
 
     @IBOutlet weak var videoContainerView: UIView!
-    
+    @IBOutlet weak var controlModeLabel: UILabel!
     @IBOutlet weak var openTokStatusLabel: UILabel!
     @IBOutlet weak var galileoStatusLabel: UILabel!
     
@@ -119,10 +119,19 @@ extension GOCallViewController {
 extension GOCallViewController {
     
     func didSwitchToMotionControl() {
-
+        self.controlModeLabel.text = "Motion control: enabled"
+        self.flashControlMode()
     }
     
     func didSwitchToTouchControl() {
-
+        self.controlModeLabel.text = "Touch control: enabled"
+        self.flashControlMode()
+    }
+    
+    func flashControlMode() {
+        self.controlModeLabel.alpha = 1.0
+        UIView.animateWithDuration(1.5) {
+            self.controlModeLabel.alpha = 0.0
+        }
     }
 }

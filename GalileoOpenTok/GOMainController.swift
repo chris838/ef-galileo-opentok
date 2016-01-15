@@ -80,15 +80,21 @@ class GOMainController {
         // Forward gesture events to the touch control controller
         self.callViewController.moveRecogniserSignal.observe(self.touchGestureController.touchEventObserver)
         
-        // Bind control mode to tap gesture
+        // Bind local control mode to tap gesture
         self.callViewController.doubleTabSignal.observeNext {
             self.model.controlMode.value = .AirGestureControl
         }
+        
+        // Display local control mode on UI
+        var previousControlMode:GOControlMode?
         self.model.controlMode.producer.startWithNext { (next:GOControlMode) in
-            switch next {
-            case .TouchGestureControl: self.callViewController.didSwitchToTouchControl()
-            case .AirGestureControl: self.callViewController.didSwitchToMotionControl()
+            if next != previousControlMode {
+                switch next {
+                case .TouchGestureControl: self.callViewController.didSwitchToTouchControl()
+                case .AirGestureControl: self.callViewController.didSwitchToMotionControl()
+                }
             }
+            previousControlMode = next
         }
     }
 }

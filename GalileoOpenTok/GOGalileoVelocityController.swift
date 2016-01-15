@@ -13,35 +13,42 @@ class GOGalileoVelocityController {
     var error_previous: Double = 0
     
     let model: GOModel
-    var pidTimer : NSTimer!
+    var controlLoopTimer : NSTimer!
     
     init(model:GOModel) {
         self.model = model
+
+        
+        /* Touch gesture control
+        */
         
         // Connect remote touch velocity to Galileo control
         self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
-            self.model.galileoPanVelocity.value = Double(-next.x)
-            self.model.galileoTiltVelocity.value = Double(-next.y)
+            if self.model.remoteControlMode.value == .TouchGestureControl {
+                self.model.galileoPanVelocity.value = Double(-next.x)
+                self.model.galileoTiltVelocity.value = Double(-next.y)
+            }
         }
         
         // Connect remote rotation rate to Galileo pan control
-        self.model.remoteRotationRate.producer.startWithNext { (next:CMRotationRate) in
-            self.model.galileoPanVelocity.value = Double(-next.x.radiansToDegrees)
+        self.model.remoteRotationRate.producer
+            .startWithNext { (next:CMRotationRate) in
+                if self.model.remoteControlMode.value == .AirGestureControl {
+                    self.model.galileoPanVelocity.value = Double(-next.x.radiansToDegrees)
+                }
         }
-        
-        // For tilt, we use a PID controller to attempt to minimise the remote-local tilt delta.
-        self.pidTimer =  NSTimer.every(self.model.dt.seconds) {
 
-            if self.model.isGalileoConnected.value {
+
+        /* Air gesture control
+        */
+
+        // For tilt, we use a PID controller to attempt to minimise the remote-local tilt delta.
+        self.controlLoopTimer =  NSTimer.every(self.model.dt.seconds) {
+            if self.model.remoteControlMode.value == .AirGestureControl {
                 self.controlLoopTick()
             }
         }
     }
-    
-    func enableAirGestureControl() {
-        
-    }
-    
     
     func controlLoopTick() {
         

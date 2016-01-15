@@ -6,7 +6,7 @@ import Foundation
 import CoreMotion
 import ReactiveCocoa
 
-enum GOControlMode {
+enum GOControlMode: String {
     case TouchGestureControl
     case AirGestureControl
 }
@@ -35,6 +35,7 @@ class GOModel {
     // MARK: - Galileo velocity control config
     
     var controlMode = MutableProperty<GOControlMode>(.TouchGestureControl)
+    var remoteControlMode = MutableProperty<GOControlMode>(.TouchGestureControl)
     
     let dt: Double = 0.1
     let pGain:Double = 2.3

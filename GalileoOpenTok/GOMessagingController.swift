@@ -3,8 +3,16 @@ import Foundation
 import ReactiveCocoa
 import CoreMotion
 
+enum GOMessageType : String {
+    case TouchGestureVelocity
+    case Gravity
+    case RotationRate
+    case ControlMode
+}
+
 class GOMessagingController {
-    
+
+
     let model: GOModel
     let openTokController: GOOpenTokController
     
@@ -19,18 +27,26 @@ class GOMessagingController {
         
         self.model.touchGestureVelocity.producer.startWithNext { (next:CGPoint) in
             let serialisedValue = "\(next.x);\(next.y)"
-            self.openTokController.session?.signalWithType("touchGestureVelocity", string: serialisedValue, connection: nil,  error:nil)
+            self.sendMessage(.TouchGestureVelocity, message: serialisedValue)
         }
         
         self.model.gravity.producer.startWithNext { (next:CMAcceleration) in
             let serialisedValue = "\(next.x);\(next.y);\(next.z)"
-            self.openTokController.session?.signalWithType("gravity", string: serialisedValue, connection: nil, error:nil)
+            self.sendMessage(.Gravity, message: serialisedValue)
         }
         
         self.model.rotationRate.producer.startWithNext { (next:CMRotationRate) in
             let serialisedValue = "\(next.x);\(next.y);\(next.z)"
-            self.openTokController.session?.signalWithType("rotationRate", string: serialisedValue, connection: nil, error:nil)
+            self.sendMessage(.RotationRate, message: serialisedValue)
         }
+        
+        self.model.controlMode.producer.startWithNext { (next:GOControlMode) in
+            self.sendMessage(.ControlMode, message: next.rawValue)
+        }
+    }
+    
+    func sendMessage(type:GOMessageType, message:String) {
+        self.openTokController.session?.signalWithType(type.rawValue, string: message, connection: nil, error:nil)
     }
 }
 
@@ -39,19 +55,21 @@ extension GOMessagingController : GOOpenTokControllerMessagingDelegate {
     /* Parse incoming messages from remote to update local state
     */
     
-    func didRecieveMessage(messageType: String, message: String) {
+    func didRecieveMessage(messageTypeString: String, message: String) {
         
         // Parse message, then update properties in model regarding remote state
-        switch messageType {
-        case "touchGestureVelocity":
-            parseRemoteTouchGestureVelocityUpdate(message)
-        case "gravity":
-            parseRemoteGravityUpdate(message)
-        case "rotationRate":
-            parseRemoteRotationRateUpdate(message)
-        default:
-            print("Error, recieved unknown message type")
-        }
+        if let messageType : GOMessageType = GOMessageType(rawValue: messageTypeString) {
+            switch messageType {
+            case .TouchGestureVelocity:
+                parseRemoteTouchGestureVelocityUpdate(message)
+            case .Gravity:
+                parseRemoteGravityUpdate(message)
+            case .RotationRate:
+                parseRemoteRotationRateUpdate(message)
+            case .ControlMode:
+                parseRemoteControlModeUpdate(message)
+            }
+        } else { print("Error, recieved unknown message type") }
     }
     
     func parseRemoteTouchGestureVelocityUpdate(message:String) {
@@ -70,6 +88,10 @@ extension GOMessagingController : GOOpenTokControllerMessagingDelegate {
         let messageArray = message.componentsSeparatedByString(";")
         let deserialisedValue = CMRotationRate(x: Double(messageArray[0])!, y: Double(messageArray[1])!, z: Double(messageArray[2])!)
         self.model.remoteRotationRate.value = deserialisedValue
+    }
+    
+    func parseRemoteControlModeUpdate(message:String) {
+        self.model.remoteControlMode.value = GOControlMode(rawValue: message)!
     }
 
 }
