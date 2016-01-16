@@ -25,10 +25,12 @@ class GOTouchGestureController {
         
         touchEventSignal.observeNext { (next:GOMoveRecogniser) -> () in
             
+            /*
             // Auto-switch to touch control at gesture start
             if next.state == .Began {
                 self.model.controlMode.value = .TouchGestureControl
             }
+            */
             
             switch next.state {
             case .Began, .Changed:

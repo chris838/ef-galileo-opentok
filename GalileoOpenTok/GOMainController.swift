@@ -82,7 +82,10 @@ class GOMainController {
         
         // Bind local control mode to tap gesture
         self.callViewController.doubleTabSignal.observeNext {
-            self.model.controlMode.value = .AirGestureControl
+            switch self.model.controlMode.value {
+            case .AirGestureControl: self.model.controlMode.value = .TouchGestureControl
+            case .TouchGestureControl: self.model.controlMode.value = .AirGestureControl
+            }
         }
         
         // Display local control mode on UI
