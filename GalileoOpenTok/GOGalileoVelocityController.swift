@@ -26,32 +26,49 @@ class GOGalileoVelocityController {
         // Connect remote touch velocity to Galileo control
         self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
             if self.model.remoteControlMode.value == .TouchGestureControl {
-                self.model.galileoPanVelocity.value = Double(-next.x)
-                self.model.galileoTiltVelocity.value = Double(-next.y)
+                self.updateVelocityFromRemoteTouchGestureVelocity()
             }
         }
         
-        // Connect remote rotation rate to Galileo pan control
+        
+        /* Air gesture control
+        */
+        
+        // For pan, connect remote rotation rate to Galileo pan control
         self.model.remoteRotationRate.producer
             .startWithNext { (next:CMRotationRate) in
                 if self.model.remoteControlMode.value == .AirGestureControl {
-                    self.updatePanVelocityFromRotationRate()
+                    self.updatePanVelocityFromRemoteRotationRate()
                 }
         }
-
-
-        /* Air gesture control
-        */
-
+        
         // For tilt, we use a PID controller to attempt to minimise the remote-local tilt delta.
         self.controlLoopTimer =  NSTimer.every(self.model.dt.seconds) {
             if self.model.remoteControlMode.value == .AirGestureControl {
-                self.controlLoopTick()
+                self.updateTiltVelocityFromRemoteLocalGravity()
             }
         }
     }
+}
+
+// MARK: - Touch gesture control
+extension GOGalileoVelocityController {
     
-    func updatePanVelocityFromRotationRate() {
+    func updateVelocityFromRemoteTouchGestureVelocity() {
+        
+        let next = self.model.remoteTouchGestureVelocity.value
+        let panPolarity: Double = (self.model.gravity.value.x > 0 ? -1 : 1)
+        
+        self.model.galileoPanVelocity.value = Double(-next.x) * panPolarity
+        self.model.galileoTiltVelocity.value = Double(-next.y)
+    }
+}
+
+
+// MARK: - Air gesture control
+extension GOGalileoVelocityController {
+    
+    func updatePanVelocityFromRemoteRotationRate() {
         
         let gravity = self.model.remoteGravity.value
         let rotationRate = self.model.remoteRotationRate.value
@@ -63,8 +80,8 @@ class GOGalileoVelocityController {
         self.model.galileoPanVelocity.value = rotationRateAroundGravity.radiansToDegrees
     }
     
-    func controlLoopTick() {
-        
+    func updateTiltVelocityFromRemoteLocalGravity() {
+    
         // Control variables
         let processVariable = tiltAngleFromGravityDegrees(self.model.gravity.value)
         let setpoint = tiltAngleFromGravityMirroredDegrees(self.model.remoteGravity.value)
