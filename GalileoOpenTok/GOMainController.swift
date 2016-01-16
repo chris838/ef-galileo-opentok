@@ -48,7 +48,7 @@ class GOMainController {
         // Update UI based on OpenTok status
         self.model.isOpenTokConnected.producer.startWithNext { (next:Bool) in
             if (next) {
-                self.callViewController.openTokStatusLabel.text = "OpenTok is connected."
+                self.callViewController.openTokStatusLabel.text = "OpenTok is connected"
             }
             else {
                 self.callViewController.openTokStatusLabel.text = "OpenTok is disconnected"
@@ -62,10 +62,10 @@ class GOMainController {
         // Update UI based on Galileo connection status
         self.model.isGalileoConnected.producer.startWithNext { (next:Bool) in
             if (next) {
-                self.callViewController.galileoStatusLabel.text = "Galileo is connected."
+                self.callViewController.galileoStatusLabel.text = "Galileo is connected"
             }
             else {
-                self.callViewController.galileoStatusLabel.text = "Galileo is disconnected."
+                self.callViewController.galileoStatusLabel.text = "Galileo is disconnected"
             }
         }
         

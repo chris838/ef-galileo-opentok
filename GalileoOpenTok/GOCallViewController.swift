@@ -53,6 +53,10 @@ class GOCallViewController: UIViewController {
     override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
         return .Fade
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
 
 
@@ -98,20 +102,28 @@ extension GOCallViewController {
 extension GOCallViewController {
     
     func didStartCall() {
-        updateViewsForCall(true)
         self.controlModeView.hidden = false
-        statusBarHidden = true
-        self.setNeedsStatusBarAppearanceUpdate()
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: .AllowUserInteraction, animations: {
+            
+            self.updateViewsForCall(true)
+            self.statusBarHidden = true
+            self.setNeedsStatusBarAppearanceUpdate()
+
+            }) { _ in}
     }
     
     func didStopCall() {
-        updateViewsForCall(false)
         self.controlModeView.hidden = true
-        statusBarHidden = false
-        self.setNeedsStatusBarAppearanceUpdate()
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: .AllowUserInteraction, animations: {
+            
+            self.updateViewsForCall(false)
+            self.statusBarHidden = false
+            self.setNeedsStatusBarAppearanceUpdate()
+
+            }) { _ in}
     }
-    
-    
     
     func updateViewsForCall(inProgress:Bool) {
         
