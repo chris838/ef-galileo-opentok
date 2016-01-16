@@ -25,7 +25,7 @@ class GOGalileoVelocityController {
         
         // Connect remote touch velocity to Galileo control
         self.model.remoteTouchGestureVelocity.producer.startWithNext { (next:CGPoint) in
-            if self.model.remoteControlMode.value == .TouchGestureControl {
+            if self.model.remoteControlMode.value == .TouchGestureControl && self.shouldUpdateVelocity() {
                 self.updateVelocityFromRemoteTouchGestureVelocity()
             }
         }
@@ -37,18 +37,34 @@ class GOGalileoVelocityController {
         // For pan, connect remote rotation rate to Galileo pan control
         self.model.remoteRotationRate.producer
             .startWithNext { (next:CMRotationRate) in
-                if self.model.remoteControlMode.value == .AirGestureControl {
+                if self.model.remoteControlMode.value == .AirGestureControl && self.shouldUpdateVelocity() {
                     self.updatePanVelocityFromRemoteRotationRate()
                 }
         }
         
         // For tilt, we use a PID controller to attempt to minimise the remote-local tilt delta.
         self.controlLoopTimer =  NSTimer.every(self.model.dt.seconds) {
-            if self.model.remoteControlMode.value == .AirGestureControl {
+            if self.model.remoteControlMode.value == .AirGestureControl && self.shouldUpdateVelocity() {
                 self.updateTiltVelocityFromRemoteLocalGravity()
             }
         }
+        
+        
+        /* Stop on disconnect
+        */
+        
+        self.model.isVideoCallInProgress.producer.startWithNext { (next:Bool) in
+            if !next {
+                self.model.galileoPanVelocity.value = 0
+                self.model.galileoTiltVelocity.value = 0
+            }
+        }
     }
+    
+    func shouldUpdateVelocity() -> Bool {
+        return (self.model.isVideoCallInProgress.value && self.model.isGalileoConnected.value)
+    }
+    
 }
 
 // MARK: - Touch gesture control
