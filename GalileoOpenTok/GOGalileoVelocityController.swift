@@ -3,6 +3,7 @@ import Foundation
 import ReactiveCocoa
 import CoreMotion
 import SwiftyTimer
+import simd
 
 class GOGalileoVelocityController {
     
@@ -34,7 +35,7 @@ class GOGalileoVelocityController {
         self.model.remoteRotationRate.producer
             .startWithNext { (next:CMRotationRate) in
                 if self.model.remoteControlMode.value == .AirGestureControl {
-                    self.model.galileoPanVelocity.value = Double(-next.x.radiansToDegrees)
+                    self.updatePanVelocityFromRotationRate()
                 }
         }
 
@@ -48,6 +49,18 @@ class GOGalileoVelocityController {
                 self.controlLoopTick()
             }
         }
+    }
+    
+    func updatePanVelocityFromRotationRate() {
+        
+        let gravity = self.model.remoteGravity.value
+        let rotationRate = self.model.remoteRotationRate.value
+
+        let gravity3D = double3(gravity.x, gravity.y, gravity.z)
+        let rotationRate3D = double3( rotationRate.x, rotationRate.y, rotationRate.z )
+
+        let rotationRateAroundGravity = dot(gravity3D, rotationRate3D)
+        self.model.galileoPanVelocity.value = rotationRateAroundGravity.radiansToDegrees
     }
     
     func controlLoopTick() {
