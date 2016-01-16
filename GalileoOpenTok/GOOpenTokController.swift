@@ -132,7 +132,7 @@ extension GOOpenTokController : OTSessionDelegate {
         
         // Step 3a: (if NO == subscribeToSelf): Begin subscribing to a stream we
         // have seen on the OpenTok session.
-        if subscriber == nil && !SubscribeToSelf {
+        if subscriber == nil {
             subscribe(stream)
         }
     }

@@ -21,10 +21,12 @@ class GOCallViewController: UIViewController {
     @IBOutlet weak var controlModeLabel: UILabel!
     @IBOutlet weak var openTokStatusLabel: UILabel!
     @IBOutlet weak var galileoStatusLabel: UILabel!
+    @IBOutlet weak var controlModeView: UIView!
     
     var mainController: GOMainController!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.setupMoveRecogniser()
@@ -97,19 +99,30 @@ extension GOCallViewController {
     
     func didStartCall() {
         updateViewsForCall(true)
+        self.controlModeView.hidden = false
         statusBarHidden = true
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
     func didStopCall() {
         updateViewsForCall(false)
+        self.controlModeView.hidden = true
         statusBarHidden = false
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
+    
+    
     func updateViewsForCall(inProgress:Bool) {
+        
+        let inProgressAlpha = CGFloat(inProgress)
+        
+        for view in [videoContainerView] {
+            view.alpha = inProgressAlpha
+        }
+        
         for view in [openTokStatusLabel, galileoStatusLabel] {
-            view.hidden = inProgress
+            view.alpha = 1.0 - inProgressAlpha
         }
     }
 }
@@ -119,19 +132,19 @@ extension GOCallViewController {
 extension GOCallViewController {
     
     func didSwitchToMotionControl() {
-        self.controlModeLabel.text = "Motion control: enabled"
+        self.controlModeLabel.text = "MOTION CONTROL: ENABLED"
         self.flashControlMode()
     }
     
     func didSwitchToTouchControl() {
-        self.controlModeLabel.text = "Touch control: enabled"
+        self.controlModeLabel.text = "TOUCH CONTROL: ENABLED"
         self.flashControlMode()
     }
     
     func flashControlMode() {
-        self.controlModeLabel.alpha = 1.0
-        UIView.animateWithDuration(1.5) {
-            self.controlModeLabel.alpha = 0.0
-        }
+        self.controlModeView.alpha = 1.0
+        UIView.animateWithDuration(0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: .AllowUserInteraction, animations: {
+                self.controlModeView.alpha = 0.0
+            }) { _ in}
     }
 }

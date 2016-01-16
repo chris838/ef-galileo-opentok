@@ -43,7 +43,6 @@
 		CDC3916F193E9F260006FFCB /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC3916E193E9F260006FFCB /* libpthread.dylib */; };
 		CDC39171193E9F2B0006FFCB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC39170193E9F2B0006FFCB /* libxml2.dylib */; };
 		CDC904D0193E3BAF00E878A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC904CF193E3BAF00E878A8 /* AppDelegate.swift */; };
-		CDC904D2193E3BAF00E878A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC904D1193E3BAF00E878A8 /* ViewController.swift */; };
 		CDC904D5193E3BAF00E878A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDC904D3193E3BAF00E878A8 /* Main.storyboard */; };
 		CDC904D7193E3BAF00E878A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDC904D6193E3BAF00E878A8 /* Images.xcassets */; };
 		CDC904E3193E3BAF00E878A8 /* GalileoOpenTokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC904E2193E3BAF00E878A8 /* GalileoOpenTokTests.swift */; };
@@ -118,7 +117,6 @@
 		CDC904CA193E3BAF00E878A8 /* GalileoOpenTok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GalileoOpenTok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC904CE193E3BAF00E878A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDC904CF193E3BAF00E878A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CDC904D1193E3BAF00E878A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CDC904D4193E3BAF00E878A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDC904D6193E3BAF00E878A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CDC904DC193E3BAF00E878A8 /* GalileoOpenTokTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GalileoOpenTokTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,7 +200,6 @@
 				39B0A1FD1C4575470001E990 /* GOMoveRecogniser.swift */,
 				CDC904D3193E3BAF00E878A8 /* Main.storyboard */,
 				39B0A1E61C45549D0001E990 /* Launch.storyboard */,
-				CDC904D1193E3BAF00E878A8 /* ViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -480,7 +477,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDC904D2193E3BAF00E878A8 /* ViewController.swift in Sources */,
 				39B0A1EC1C455A0C0001E990 /* GOOpenTokController.swift in Sources */,
 				39B0A1EF1C455B540001E990 /* GOCallViewController.swift in Sources */,
 				39B0A2041C458E070001E990 /* GOMessagingController.swift in Sources */,

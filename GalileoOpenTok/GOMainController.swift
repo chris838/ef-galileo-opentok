@@ -48,7 +48,7 @@ class GOMainController {
         // Update UI based on OpenTok status
         self.model.isOpenTokConnected.producer.startWithNext { (next:Bool) in
             if (next) {
-                self.callViewController.openTokStatusLabel.text = "OpenTok is connected"
+                self.callViewController.openTokStatusLabel.text = "OpenTok is connected."
             }
             else {
                 self.callViewController.openTokStatusLabel.text = "OpenTok is disconnected"

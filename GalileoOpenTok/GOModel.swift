@@ -27,6 +27,8 @@ class GOModel {
     
     // MARK: - Galileo config
     
+    let minVelocityThreshold = 2.0
+    
     var isGalileoConnected = MutableProperty<Bool>(false)
     var galileoPanVelocity = MutableProperty<Double>(0)
     var galileoTiltVelocity = MutableProperty<Double>(0)
