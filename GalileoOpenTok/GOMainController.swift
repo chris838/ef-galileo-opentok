@@ -99,5 +99,21 @@ class GOMainController {
             }
             previousControlMode = next
         }
+        
+        // Update orientation from gravity
+        self.model.gravity.producer.startWithNext { (next:CMAcceleration) in
+            if next.x > 0 { self.model.orientation.value = .LandscapeLeft }
+            else { self.model.orientation.value = .LandscapeRight }
+        }
+        
+        // Orient control mode based on orientation
+        self.model.orientation.producer.startWithNext { (next:UIDeviceOrientation) in
+            if next == .LandscapeLeft {
+                self.callViewController.controlModeContainerView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            }
+            else {
+                self.callViewController.controlModeContainerView.transform = CGAffineTransformIdentity
+            }
+        }
     }
 }

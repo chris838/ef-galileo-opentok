@@ -17,6 +17,7 @@ class GOCallViewController: UIViewController {
     var doubleTapRecogniser: UITapGestureRecognizer!
     var statusBarHidden:Bool = false
 
+    @IBOutlet weak var controlModeContainerView: UIView!
     @IBOutlet weak var videoContainerView: UIView!
     @IBOutlet weak var controlModeLabel: UILabel!
     @IBOutlet weak var openTokStatusLabel: UILabel!

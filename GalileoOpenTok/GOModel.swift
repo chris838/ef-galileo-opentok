@@ -24,6 +24,8 @@ class GOModel {
     var touchGestureVelocity = MutableProperty<CGPoint>(CGPoint(x: 0, y: 0))
     var remoteTouchGestureVelocity = MutableProperty<CGPoint>(CGPoint(x: 0, y: 0))
     
+    var orientation = MutableProperty<UIDeviceOrientation>(.LandscapeRight)
+    
     
     // MARK: - Galileo config
     
