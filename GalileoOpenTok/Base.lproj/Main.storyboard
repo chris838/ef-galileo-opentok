@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Call View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="GOCallViewController" customModule="GalileoOpenTok" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mjq-ZT-RTd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZTb-UQ-BkZ">
+                                <rect key="frame" x="20" y="213" width="262" height="74"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OpenTok is $status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-4L-pcS">
+                                        <rect key="frame" x="0.0" y="0.0" width="262" height="37"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Galileo is $status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05u-rk-gPk">
+                                        <rect key="frame" x="0.0" y="37" width="234.5" height="37"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UvH-gK-Zhp">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arR-1f-xYa">
+                                        <rect key="frame" x="0.0" y="453" width="600" height="47"/>
+                                        <subviews>
+                                            <label opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$MODE CONTROL: ENABLED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syM-8x-xpM">
+                                                <rect key="frame" x="0.0" y="5" width="600" height="37"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.058823529411764705" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="syM-8x-xpM" firstAttribute="leading" secondItem="arR-1f-xYa" secondAttribute="leading" id="9o0-dY-Tdu"/>
+                                            <constraint firstItem="syM-8x-xpM" firstAttribute="centerX" secondItem="arR-1f-xYa" secondAttribute="centerX" id="FY6-vZ-3XO"/>
+                                            <constraint firstItem="syM-8x-xpM" firstAttribute="top" secondItem="arR-1f-xYa" secondAttribute="top" constant="5" id="Fyj-Vk-VlK"/>
+                                            <constraint firstAttribute="trailing" secondItem="syM-8x-xpM" secondAttribute="trailing" id="Xhs-PJ-VI4"/>
+                                            <constraint firstItem="syM-8x-xpM" firstAttribute="centerY" secondItem="arR-1f-xYa" secondAttribute="centerY" id="vyQ-V0-kOb"/>
+                                            <constraint firstAttribute="bottom" secondItem="syM-8x-xpM" secondAttribute="bottom" constant="5" id="w2e-tC-tAg"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="FY6-vZ-3XO"/>
+                                                <exclude reference="vyQ-V0-kOb"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="arR-1f-xYa" secondAttribute="bottom" id="GwR-Hb-Qyc"/>
+                                    <constraint firstAttribute="trailing" secondItem="arR-1f-xYa" secondAttribute="trailing" id="KUg-32-kEb"/>
+                                    <constraint firstItem="arR-1f-xYa" firstAttribute="leading" secondItem="UvH-gK-Zhp" secondAttribute="leading" id="fwh-0O-50E"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.058823529411764705" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Mjq-ZT-RTd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0kc-9W-aU4"/>
+                            <constraint firstItem="ZTb-UQ-BkZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="BUD-J6-RiE"/>
+                            <constraint firstItem="ZTb-UQ-BkZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="L8V-Rb-6Cg"/>
+                            <constraint firstItem="Mjq-ZT-RTd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="P9e-X2-rQd"/>
+                            <constraint firstAttribute="bottom" secondItem="UvH-gK-Zhp" secondAttribute="bottom" id="Pes-N7-x2t"/>
+                            <constraint firstAttribute="bottom" secondItem="Mjq-ZT-RTd" secondAttribute="bottom" id="U6a-S4-cCt"/>
+                            <constraint firstItem="UvH-gK-Zhp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Wra-O5-5hU"/>
+                            <constraint firstItem="UvH-gK-Zhp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="YVc-1O-RMW"/>
+                            <constraint firstAttribute="trailing" secondItem="UvH-gK-Zhp" secondAttribute="trailing" id="b5a-MK-voG"/>
+                            <constraint firstAttribute="trailing" secondItem="Mjq-ZT-RTd" secondAttribute="trailing" id="hMt-Md-cXm"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="500"/>
+                    <connections>
+                        <outlet property="controlModeContainerView" destination="UvH-gK-Zhp" id="9wW-iO-MpY"/>
+                        <outlet property="controlModeLabel" destination="syM-8x-xpM" id="FqI-jp-knU"/>
+                        <outlet property="controlModeView" destination="arR-1f-xYa" id="uxe-t0-rfS"/>
+                        <outlet property="galileoStatusLabel" destination="05u-rk-gPk" id="eff-5L-BaC"/>
+                        <outlet property="openTokStatusLabel" destination="fGD-4L-pcS" id="xGc-5t-u9z"/>
+                        <outlet property="videoContainerView" destination="Mjq-ZT-RTd" id="p1h-BQ-OiC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="356" y="131"/>
+        </scene>
+    </scenes>
+</document>
