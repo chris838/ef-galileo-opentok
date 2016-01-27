@@ -23,7 +23,12 @@ class GOTouchGestureController {
         touchEventSignal = signal
         touchEventObserver = observer
         
-        touchEventSignal.observeNext { (next:GOMoveRecogniser) -> () in
+        touchEventSignal
+            .filter { (next:GOMoveRecogniser) -> Bool in
+                return next.state != .Began
+            }
+            .throttle(0.1, onScheduler: QueueScheduler.mainQueueScheduler)
+            .observeNext { (next:GOMoveRecogniser) -> () in
             
             /*
             // Auto-switch to touch control at gesture start
@@ -33,7 +38,7 @@ class GOTouchGestureController {
             */
             
             switch next.state {
-            case .Began, .Changed:
+            case .Changed:
                 
                 let velocity = next.velocityInView(next.view!)
                 
